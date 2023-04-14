@@ -8,6 +8,7 @@ import datetime
 
 # file imports start
 from user.login import login
+from user.profile import profile
 from money.balance import balance
 from money.daily import daily
 from money.forbes import forbes
@@ -30,6 +31,10 @@ async def check_latency(ctx):
 @bot.slash_command(name = "login", description = "login as tischler")
 async def slash_login(ctx):
     await login(ctx)
+    
+@bot.slash_command(name = "profile", description = "see your tischler working id")
+async def slash_profile(ctx):
+    await profile(ctx, bot)
 
 @bot.slash_command(name = "balance", description = "see how much money you have")
 async def slash_balance(ctx):

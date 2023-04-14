@@ -1,6 +1,5 @@
 import json
 import datetime
-import fileinput
 import discord
 from distributioner import *
 

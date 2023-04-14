@@ -12,6 +12,7 @@ from money.balance import balance
 from money.daily import daily
 from money.forbes import forbes
 from gamling.dice import dice
+from migration_db.migrate import migrate
 # file imports end
 
 load_dotenv() # load all the variables from the env file
@@ -45,6 +46,10 @@ async def slash_forbes(ctx):
 @bot.slash_command(name = "dice", description = "throw the dice better than me to win some money")
 async def slash_dice(ctx, amount: Option(int, "gamble money", required=True, default='')):
     await dice(ctx, amount)
+    
+@bot.slash_command(name = "migrate", description = "add new db item")
+async def slash_migrate(ctx, key: Option(str, "new key", required=True, default=''), value: Option(str, "default value", required=True, default='')):
+    await migrate(ctx, key, value)
     
 
 bot.run(os.getenv('TOKEN'))

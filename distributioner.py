@@ -1,6 +1,20 @@
 import json
 import discord
 
+async def check_lenillian(ctx):
+    if ctx.author.id == 646782364676128781:
+        return True
+    else:
+        embed = discord.Embed(
+            title="401 Unauthorized",
+            description=ctx.author.mention + " you are not allowed to use owner command!",
+            color=discord.Colour.dark_red()
+        ) 
+        
+        await ctx.respond(embed=embed)
+        return False
+        
+
 async def check_value(ctx, key_value, value):
     if key_value - value < 0:
         

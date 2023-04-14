@@ -30,7 +30,7 @@ async def check_latency(ctx):
 
 @bot.slash_command(name = "login", description = "login as tischler")
 async def slash_login(ctx):
-    await login(ctx)
+    await login(ctx, bot)
     
 @bot.slash_command(name = "profile", description = "see your tischler working id")
 async def slash_profile(ctx):

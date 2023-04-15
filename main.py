@@ -5,6 +5,7 @@ from discord.commands.context import ApplicationContext
 import os
 from dotenv import load_dotenv
 import datetime
+import asyncio
 
 # file imports start
 from user.login import login
@@ -14,10 +15,11 @@ from money.daily import daily
 from money.forbes import forbes
 from gamling.dice import dice
 from migration_db.migrate import migrate
+from work.work import start_working
 # file imports end
 
 load_dotenv() # load all the variables from the env file
-bot = discord.Bot()
+bot = discord.AutoShardedBot()
 
 @bot.event
 async def on_ready():
@@ -56,5 +58,11 @@ async def slash_dice(ctx, amount: Option(int, "gamble money", required=True, def
 async def slash_migrate(ctx, key: Option(str, "new key", required=True, default=''), value: Option(str, "default value", required=True, default='')):
     await migrate(ctx, key, value)
     
+@bot.slash_command(name = "work", description = "work for an hour to get some money")
+async def slash_work(ctx):
+    try:
+        asyncio.run(await start_working(ctx))
+    except:
+        pass
 
 bot.run(os.getenv('TOKEN'))

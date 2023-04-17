@@ -3,10 +3,10 @@ import distributioner
 
 async def send_money(ctx, value,  member):
     
-    if distributioner.check_user(ctx) == False:
+    if await distributioner.check_user(ctx) == False:
         return
     
-    if distributioner.is_user_in_db(member.id) == False:
+    if await distributioner.is_user_in_db(member.id) == False:
         embed = discord.Embed(
             title="418 I'm a teapot",
             description= "Just kidding " + ctx.author.mention + " needs to use /login first to get a Job...",

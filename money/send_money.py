@@ -14,8 +14,10 @@ async def send_money(ctx, value,  member):
         )
         
         await ctx.respond(embed=embed)
+        return
+        
     
-    distributioner.subtract(ctx.author.id, "money", value)
+    await distributioner.subtract(ctx.author.id, "money", value)
     
     distributioner.add(member.id, "money", value)
     

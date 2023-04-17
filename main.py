@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 import datetime
 
-# file imports start
+# file imports tischler start
 from user.login import login
 from user.profile import profile
 from money.balance import balance
@@ -15,10 +15,16 @@ from migration_db.migrate import migrate
 from work.work import start_working
 from work.work import end_working
 from user.level import level
-# file imports end
+# file imports tischler end
+
+# file imports guild start
+from user.enter_guild import enter_guild
+# file imports guild end
 
 load_dotenv() # load all the variables from the env file
 bot = discord.AutoShardedBot()
+
+## EVENTS
 
 @bot.event
 async def on_ready():
@@ -31,6 +37,8 @@ async def on_message(message):
         return
     
     await level(message.author.id)
+
+## TISCHLER
 
 @bot.slash_command(name = "latency", description = "check the latency of Schreiner")
 async def check_latency(ctx):
@@ -71,5 +79,14 @@ async def slash_work(ctx):
 @bot.slash_command(name = "payday", description = "get your payday")
 async def slash_payday(ctx):
     await end_working(ctx)
+    
+## GUILD
+
+@bot.slash_command(name = "enter_guild", description = " enter the guild of Azdargel as adventurer")
+async def slash_enter(ctx):
+    await enter_guild(ctx, bot)
+
+    
+
 
 bot.run(os.getenv('TOKEN'))

@@ -9,7 +9,7 @@ async def send_money(ctx, value,  member):
     if await distributioner.is_user_in_db(member.id) == False:
         embed = discord.Embed(
             title="418 I'm a teapot",
-            description= "Just kidding " + ctx.author.mention + " needs to use /login first to get a Job...",
+            description= "Just kidding " + "<@" + str(member.id) + ">" + " needs to use /login first to get a Job...",
             color=discord.Colour.dark_red()
         )
         

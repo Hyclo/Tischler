@@ -23,7 +23,8 @@ async def login(ctx, bot):
                 "exp": 0,
                 "timestampdaily": str(datetime.date.today() - datetime.timedelta(days=1)),
                 "timestampwork": datetime.datetime.strftime(datetime.date.now() - datetime.timedelta(days=1), "%Y-%m-%d %H:%M"),
-                "working": False
+                "working": False,
+                "timestamplevel": datetime.datetime.strftime(datetime.date.now() - datetime.timedelta(days=1), "%Y-%m-%d %H:%M")
             }   
             users.append(dict)
 

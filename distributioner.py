@@ -37,7 +37,7 @@ async def is_user_in_db(author_id):
         users = server['users']
         check = False
         for user in users:
-            if user['user'] == ctx.author.id:
+            if user['user'] == author_id:
                 check = True
             
     return check

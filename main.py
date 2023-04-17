@@ -14,6 +14,7 @@ from gamling.dice import dice
 from migration_db.migrate import migrate
 from work.work import start_working
 from work.work import end_working
+from user.level import level
 # file imports end
 
 load_dotenv() # load all the variables from the env file
@@ -28,6 +29,8 @@ async def on_ready():
 async def on_message(message):
     if message.author.id == 1096041999011950632:
         return
+    
+    await level(message.author.id)
 
 @bot.slash_command(name = "latency", description = "check the latency of Schreiner")
 async def check_latency(ctx):

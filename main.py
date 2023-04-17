@@ -10,6 +10,7 @@ from user.profile import profile
 from money.balance import balance
 from money.daily import daily
 from money.forbes import forbes
+from money.send_money import send_money
 from gamling.dice import dice
 from migration_db.migrate import migrate
 from work.work import start_working
@@ -71,5 +72,9 @@ async def slash_work(ctx):
 @bot.slash_command(name = "payday", description = "get your payday")
 async def slash_payday(ctx):
     await end_working(ctx)
+    
+@bot.slash_command(name = "transfer", description = "transfer money to a friend")
+async def slash_send_money(ctx, member: Option(discord.Member, " your friends name", required=True, default=''), value: Option(int, " how much money you wanna send", required=True, default='')):
+    await send_money(ctx, value, member)
 
 bot.run(os.getenv('TOKEN'))

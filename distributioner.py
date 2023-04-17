@@ -57,7 +57,7 @@ async def check_user(ctx):
         if check == False:
             embed = discord.Embed(
                 title="418 I'm a teapot",
-                description= "Just kidding " + ctx.author.mention + " use /login first to create get a Job...",
+                description= "Just kidding " + ctx.author.mention + " use /login first to get a Job...",
                 color=discord.Colour.dark_red()
             )
             

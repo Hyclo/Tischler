@@ -28,6 +28,20 @@ async def check_value(ctx, key_value, value):
     else:
         return True
     
+async def is_user_in_db(author_id):
+    with open('data.json') as json_file:
+        data = json.load(json_file)
+        
+        server = data['server']
+
+        users = server['users']
+        check = False
+        for user in users:
+            if user['user'] == ctx.author.id:
+                check = True
+            
+    return check
+    
 async def check_user(ctx):
     with open('data.json') as json_file:
         data = json.load(json_file)

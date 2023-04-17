@@ -1,11 +1,8 @@
 import discord
-from discord.ext import tasks
 from discord.commands import Option
-from discord.commands.context import ApplicationContext
 import os
 from dotenv import load_dotenv
 import datetime
-import asyncio
 
 # file imports start
 from user.login import login
@@ -16,6 +13,7 @@ from money.forbes import forbes
 from gamling.dice import dice
 from migration_db.migrate import migrate
 from work.work import start_working
+from work.work import end_working
 # file imports end
 
 load_dotenv() # load all the variables from the env file
@@ -25,6 +23,11 @@ bot = discord.AutoShardedBot()
 async def on_ready():
     print(f"{bot.user} is ready and online!")
     print("time of login: " + str(datetime.datetime.today()))
+    
+@bot.event
+async def on_message(message):
+    if message.author.id == 1096041999011950632:
+        return
 
 @bot.slash_command(name = "latency", description = "check the latency of Schreiner")
 async def check_latency(ctx):
@@ -58,11 +61,12 @@ async def slash_dice(ctx, amount: Option(int, "gamble money", required=True, def
 async def slash_migrate(ctx, key: Option(str, "new key", required=True, default=''), value: Option(str, "default value", required=True, default='')):
     await migrate(ctx, key, value)
     
-@bot.slash_command(name = "work", description = "work for an hour to get some money")
+@bot.slash_command(name = "work", description = "work to get more money")
 async def slash_work(ctx):
-    try:
-        asyncio.run(await start_working(ctx))
-    except:
-        pass
+    await start_working(ctx)
+    
+@bot.slash_command(name = "payday", description = "get your payday")
+async def slash_payday(ctx):
+    await end_working(ctx)
 
 bot.run(os.getenv('TOKEN'))

@@ -7,6 +7,6 @@ kill $pid
 git pull
 
 echo "booting Bot"
-python3 main.py
+nohup python3 main.py
 
 exit 0

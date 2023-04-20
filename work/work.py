@@ -27,7 +27,7 @@ async def check_time(ctx):
     if get_difference_in_hours(distributioner.get(ctx.author.id, "timestampwork")) < 24:
         embed = discord.Embed(
             title="406 Not Acceptable",
-            description= "Just kidding " + ctx.author.mention + " but u cant work twice a day",
+            description= "Just kidding " + ctx.author.mention + " but you have to take a 24 hour break",
             color=discord.Colour.dark_red()
         )
         await ctx.respond(embed=embed)
@@ -91,6 +91,12 @@ async def end_working(ctx):
             color=discord.Colour.blurple()
         )
         embed.add_field(name="Money made", value=str(money), inline=True)
+
+        now = datetime.datetime.now()
+        
+        now = datetime.datetime.strftime(now, "%Y-%m-%d %H:%M")
+        
+        distributioner.update(ctx.author.id, "timestampwork", now)
         
         distributioner.update(ctx.author.id, "working", str(False))
         

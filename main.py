@@ -18,8 +18,10 @@ from migration_db.migrate import migrate
 from work.work import start_working
 from work.work import end_working
 from user.level import level
+from deployment.deployment import deployment
 # file imports end
 
+deployee = deployment()
 
 load_dotenv() # load all the variables from the env file
 bot = discord.AutoShardedBot()
@@ -28,7 +30,6 @@ bot = discord.AutoShardedBot()
 async def on_ready():
     print(f"{bot.user} is ready and online!")
     print("time of login: " + str(datetime.datetime.today()))
-    deployment_stopper=1
     
 @bot.event
 async def on_message(message):
@@ -39,11 +40,11 @@ async def on_message(message):
 
 @tasks.loop(hours=24.0)
 async def deploy():
-    if deployment_stopper == 0:
-        subprocess.call(['bash', './auto-deploy.sh'])
+    if deployee.get_stopper() == 0:
+        subprocess.call(['bash', './deployment/auto-deploy.sh'])
 
-    if deployment_stopper == 1:
-        deployment_stopper=0
+    if deployee.get_stopper() == 1:
+        deployee.set_stopper(0)
 
 @bot.slash_command(name = "latency", description = "check the latency of Schreiner")
 async def check_latency(ctx):
@@ -88,6 +89,7 @@ async def slash_payday(ctx):
 @bot.slash_command(name = "transfer", description = "transfer money to a friend")
 async def slash_send_money(ctx, member: Option(discord.Member, " your friends name", required=True, default=''), value: Option(int, " how much money you wanna send", required=True, default='')):
     await send_money(ctx, value, member)
+
 
 deploy.start()
 bot.run(os.getenv('TOKEN'))

@@ -12,7 +12,7 @@ async def login(ctx, bot):
         users = server['users']
         check = False
 
-        current_user = {}
+        current_user = []
 
         for user in users:
             if user['user'] == ctx.author.id:
@@ -30,7 +30,7 @@ async def login(ctx, bot):
                 "working": False,
                 "timestamplevel": datetime.datetime.strftime(datetime.datetime.now() - datetime.timedelta(days=1), "%Y-%m-%d %H:%M")
             }   
-            user.append(dict)
+            users.append(dict)
 
             embed = discord.Embed(
                     title="login",
@@ -48,7 +48,7 @@ async def login(ctx, bot):
 
     with open("data.json", "w") as outfile:
         json.dump(data, outfile)
-        
+    '''    
     update(ctx.author.id, "money", 1000)
     
     guild = discord.Client.get_guild(bot, 908337305759141948)
@@ -61,4 +61,4 @@ async def login(ctx, bot):
 
     await ctx.respond(embed=embed)
 
-        
+    '''

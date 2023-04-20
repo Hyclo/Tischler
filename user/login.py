@@ -48,7 +48,7 @@ async def login(ctx, bot):
 
     with open("data.json", "w") as outfile:
         json.dump(data, outfile)
-    '''    
+        
     update(ctx.author.id, "money", 1000)
     
     guild = discord.Client.get_guild(bot, 908337305759141948)
@@ -61,4 +61,3 @@ async def login(ctx, bot):
 
     await ctx.respond(embed=embed)
 
-    '''

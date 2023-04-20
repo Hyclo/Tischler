@@ -11,9 +11,13 @@ async def login(ctx, bot):
 
         users = server['users']
         check = False
+
+        current_user = {}
+
         for user in users:
             if user['user'] == ctx.author.id:
                 check = True
+                current_user = user
 
         if check == False:
             dict = {
@@ -26,7 +30,7 @@ async def login(ctx, bot):
                 "working": False,
                 "timestamplevel": datetime.datetime.strftime(datetime.datetime.now() - datetime.timedelta(days=1), "%Y-%m-%d %H:%M")
             }   
-            users.append(dict)
+            user.append(dict)
 
             embed = discord.Embed(
                     title="login",

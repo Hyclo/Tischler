@@ -3,6 +3,8 @@ from discord.commands import Option
 import os
 from dotenv import load_dotenv
 import datetime
+from discord.ext import tasks
+import subprocess
 
 # file imports start
 from user.login import login
@@ -32,6 +34,10 @@ async def on_message(message):
         return
     
     await level(message.author.id)
+
+@tasks.loop(seconds=20.0)
+async def deploy():
+    subprocess.call(['bash', './auto-deploy.sh'])
 
 @bot.slash_command(name = "latency", description = "check the latency of Schreiner")
 async def check_latency(ctx):

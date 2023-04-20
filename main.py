@@ -20,7 +20,6 @@ from work.work import end_working
 from user.level import level
 # file imports end
 
-deployment_stopper=1
 
 load_dotenv() # load all the variables from the env file
 bot = discord.AutoShardedBot()
@@ -29,6 +28,7 @@ bot = discord.AutoShardedBot()
 async def on_ready():
     print(f"{bot.user} is ready and online!")
     print("time of login: " + str(datetime.datetime.today()))
+    deployment_stopper=1
     
 @bot.event
 async def on_message(message):

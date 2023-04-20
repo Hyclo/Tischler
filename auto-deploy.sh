@@ -15,3 +15,5 @@ echo "git pull done"
 echo "booting Bot"
 
 python3 main.py
+
+exit 0

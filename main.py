@@ -27,6 +27,7 @@ bot = discord.AutoShardedBot()
 async def on_ready():
     print(f"{bot.user} is ready and online!")
     print("time of login: " + str(datetime.datetime.today()))
+    deploy.start()
     
 @bot.event
 async def on_message(message):

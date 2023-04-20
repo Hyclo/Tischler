@@ -41,11 +41,10 @@ async def on_message(message):
 @tasks.loop(hours=24.0)
 async def deploy():
     if deployee.get_stopper() == 0:
-        bot.get_guild(908337305759141948).get_channel(978033714573488169).send("Starting new deployment")
+        bot.get_guild(908337305759141948).get_channel(978033714573488169).send("Starting new deployment, I'm up again in 20s")
         subprocess.call(['bash', './deployment/auto-deploy.sh'])
 
     if deployee.get_stopper() == 1:
-        bot.get_guild(908337305759141948).get_channel(978033714573488169).send("switched old with new deployment")
         deployee.set_stopper(0)
 
 @bot.slash_command(name = "latency", description = "check the latency of Schreiner")

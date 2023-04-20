@@ -36,7 +36,7 @@ async def on_message(message):
     
     await level(message.author.id)
 
-@tasks.loop(seconds=20.0)
+@tasks.loop(hours=24.0)
 async def deploy():
     subprocess.call(['bash', './auto-deploy.sh'])
 

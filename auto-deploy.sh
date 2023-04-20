@@ -14,4 +14,4 @@ echo "git pull done"
 
 echo "booting Bot"
 
-nohup python3 main.py
+python3 main.py

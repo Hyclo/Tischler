@@ -38,6 +38,13 @@ async def on_message(message):
         return
     
     await level(message.author.id)
+    
+@bot.event
+async def on_thread_create(thread):
+    if thread.parent_id == 1096914027889827970:
+        channel = bot.get_channel(1096914027889827970)
+        print(discord.ForumChannel.get_tag(channel.id))
+        thread.edit(applied_tags=[])
 
 @tasks.loop(hours=24.0)
 async def deploy():

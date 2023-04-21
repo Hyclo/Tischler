@@ -1,1 +1,96 @@
-{"server": {"users": [{"user": 646782364676128781, "money": 1001, "level": 0, "exp": 25, "timestampdaily": "2023-04-20", "timestampwork": "2023-04-20 18:09", "working": false, "timestamplevel": "2023-04-21 18:17"}]}}
+{
+  "server": {
+    "users": [
+      {
+        "user": 646782364676128781,
+        "money": 5000,
+        "level": 0,
+        "exp": 0,
+        "timestampdaily": "2023-04-20",
+        "timestampwork": "2023-04-20 18:09",
+        "working": false,
+        "timestamplevel": "2023-04-21 18:17"
+      },
+      {
+        "user": 504366756031234065,
+        "money": 5000,
+        "level": 0,
+        "exp": 0,
+        "timestampdaily": "2023-04-20",
+        "timestampwork": "2023-04-20 18:09",
+        "working": false,
+        "timestamplevel": "2023-04-21 18:17"
+      },
+      {
+        "user": 912349657991110668,
+        "money": 5000,
+        "level": 0,
+        "exp": 0,
+        "timestampdaily": "2023-04-20",
+        "timestampwork": "2023-04-20 18:09",
+        "working": false,
+        "timestamplevel": "2023-04-21 18:17"
+      },
+      {
+        "user": 729720737715322900,
+        "money": 5000,
+        "level": 0,
+        "exp": 0,
+        "timestampdaily": "2023-04-20",
+        "timestampwork": "2023-04-20 18:09",
+        "working": false,
+        "timestamplevel": "2023-04-21 18:17"
+      },
+      {
+        "user": 492965102102904833,
+        "money": 5000,
+        "level": 0,
+        "exp": 0,
+        "timestampdaily": "2023-04-20",
+        "timestampwork": "2023-04-20 18:09",
+        "working": false,
+        "timestamplevel": "2023-04-21 18:17"
+      },
+      {
+        "user": 623193587835994112,
+        "money": 5000,
+        "level": 0,
+        "exp": 0,
+        "timestampdaily": "2023-04-20",
+        "timestampwork": "2023-04-20 18:09",
+        "working": false,
+        "timestamplevel": "2023-04-21 18:17"
+      },
+      {
+        "user": 884378245406011422,
+        "money": 5000,
+        "level": 0,
+        "exp": 0,
+        "timestampdaily": "2023-04-20",
+        "timestampwork": "2023-04-20 18:09",
+        "working": false,
+        "timestamplevel": "2023-04-21 18:17"
+      },
+      {
+        "user": 421723072631144449,
+        "money": 5000,
+        "level": 0,
+        "exp": 0,
+        "timestampdaily": "2023-04-20",
+        "timestampwork": "2023-04-20 18:09",
+        "working": false,
+        "timestamplevel": "2023-04-21 18:17"
+      },
+      {
+        "user": 923154487122747422,
+        "money": 5000,
+        "level": 0,
+        "exp": 0,
+        "timestampdaily": "2023-04-20",
+        "timestampwork": "2023-04-20 18:09",
+        "working": false,
+        "timestamplevel": "2023-04-21 18:17"
+      }
+    ]
+  }
+}

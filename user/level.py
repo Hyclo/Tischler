@@ -34,5 +34,11 @@ async def level(author_id):
         level = int(distributioner.get(author_id, "level"))
         exp = distributioner.get(author_id, "exp")
         
-        if exp >= 5 * (level ** 2) + (50 * level) + 100 - exp:
+        result = 0
+        stolen_levels = level
+        while stolen_levels >= 0:
+            result += 5 * ((level-stolen_levels) ** 2) + ((level-stolen_levels) * 50) + 100
+            stolen_levels = stolen_levels - 1
+        
+        if exp >= result:
             distributioner.add(author_id, "level", 1)

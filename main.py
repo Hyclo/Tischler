@@ -43,7 +43,7 @@ async def on_message(message):
 async def on_thread_create(thread):
     if thread.parent_id == 1096914027889827970:
         channel = bot.get_channel(1096914027889827970)
-        print(discord.ForumChannel.get_tag(channel.id))
+        print(discord.ForumChannel.get_tag(channel))
         #thread.edit(applied_tags=[])
 
 @tasks.loop(hours=24.0)

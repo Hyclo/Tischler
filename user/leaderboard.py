@@ -15,4 +15,5 @@ async def leaderboard(ctx, bot):
     embed.add_field(name="Top 2", value=str(await discord.Bot.get_or_fetch_user(bot, users[1][0])) + " with " + str(users[1][1]))
     embed.add_field(name="Top 3", value=str(await discord.Bot.get_or_fetch_user(bot, users[2][0])) + " with " + str(users[2][1]))
     
+    
     await ctx.respond(embed=embed)

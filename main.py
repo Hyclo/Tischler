@@ -97,5 +97,6 @@ async def slash_send_money(ctx, member: Option(discord.Member, " your friends na
     await send_money(ctx, value, member)
 
 
+
 deploy.start()
 bot.run(os.getenv('TOKEN'))

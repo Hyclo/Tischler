@@ -9,6 +9,8 @@ import subprocess
 # file imports start
 from user.login import login
 from user.profile import profile
+from user.leaderboard import leaderboard
+from user.level import level
 from money.balance import balance
 from money.daily import daily
 from money.forbes import forbes
@@ -17,7 +19,6 @@ from gamling.dice import dice
 from migration_db.migrate import migrate
 from work.work import start_working
 from work.work import end_working
-from user.level import level
 from deployment.deployment import deployment
 # file imports end
 
@@ -70,6 +71,10 @@ async def slash_daily(ctx):
 @bot.slash_command(name = "forbes", description = "see the three richest tischlers")
 async def slash_forbes(ctx):
     await forbes(ctx, bot)
+    
+@bot.slash_command(name = "leaderboard", description = "see the three top ranked tischlers")
+async def slash_leaderboard(ctx):
+    await leaderboard(ctx, bot)
     
 @bot.slash_command(name = "dice", description = "throw the dice better than me to win some money")
 async def slash_dice(ctx, amount: Option(int, "gamble money", required=True, default='')):

@@ -16,16 +16,23 @@ async def send_money(ctx, value,  member):
         await ctx.respond(embed=embed)
         return
         
-    
-    await distributioner.subtract(ctx.author.id, "money", value)
-    
-    distributioner.add(member.id, "money", value)
-    
-    embed = discord.Embed(
-        title="Money Transfer",
-        description= ctx.author.mention + " has sent " + str(value) + " to <@" + str(member.id) + ">",
-        color=discord.Colour.brand_green()
-    )
+    if value <= 0:
+        embed = discord.Embed(
+            title="Cringe",
+            description= ctx.author.mention + "tries to spawn money",
+            color=discord.Colour.dark_red()
+        )
+    else:
+        
+        await distributioner.subtract(ctx.author.id, "money", value)
+        
+        distributioner.add(member.id, "money", value)
+        
+        embed = discord.Embed(
+            title="Money Transfer",
+            description= ctx.author.mention + " has sent " + str(value) + " to <@" + str(member.id) + ">",
+            color=discord.Colour.brand_green()
+        )
     
     await ctx.respond(embed=embed)
     

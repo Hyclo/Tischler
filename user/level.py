@@ -45,5 +45,5 @@ async def level(author_id, message):
             
             distributioner.add(author_id, "level", 1)
             
-            ctx = await discord.Bot.get_application_context(message, discord.ApplicationContext)
+            ctx = await discord.Bot.get_application_context(discord.Bot, message, discord.ApplicationContext)
             ctx.respond("You have reached a new Level", ephemeral=True)

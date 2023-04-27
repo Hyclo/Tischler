@@ -20,7 +20,7 @@ def get_difference_in_hours(date_1):
     
     return diff_in_minutes
 
-async def level(author_id, message):
+async def level(author_id, message, bot):
     
     if await pentester.is_user_in_db(author_id) == False:
         return
@@ -45,5 +45,5 @@ async def level(author_id, message):
             
             distributioner.add(author_id, "level", 1)
             
-            ctx = await discord.Bot.get_application_context(discord.Bot, message.interaction, discord.ApplicationContext)
+            ctx = await bot.get_application_context(bot, message.interaction, discord.ApplicationContext)
             ctx.respond("You have reached a new Level", ephemeral=True)

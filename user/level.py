@@ -45,6 +45,11 @@ async def level(author_id, message, bot):
             
             distributioner.add(author_id, "level", 1)
             
-            #ctx = await discord.Bot.get_application_context(self=bot, interaction=message.interaction, cls=)
-            await message.reply(content="You have reached a new Level", delete_after=10.0)
+            embed = discord.Embed(
+                title="Level up",
+                description= "<@" +message.author.id + "> you have reached a new level!",
+                color=discord.Colour.blurple()
+            )
+            embed.add_field(name="current Level", value=str(level + 1), inline=True)
+            await message.reply(embed=embed)
             

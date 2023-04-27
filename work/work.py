@@ -82,7 +82,7 @@ async def end_working(ctx):
         await ctx.respond(embed=embed)
     else:
         
-        money = get_difference_in_hours(distributioner.get(ctx.author.id, "timestampwork")) * 10 ((distributioner.get(ctx.author.id, "level") + 1) / 10)
+        money = get_difference_in_hours(distributioner.get(ctx.author.id, "timestampwork")) * 10 * ((distributioner.get(ctx.author.id, "level") + 1) / 10)
         
         money = round_up(money)
         

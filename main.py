@@ -94,7 +94,7 @@ async def slash_payday(ctx):
     
 @bot.slash_command(name = "transfer", description = "transfer money to a friend")
 async def slash_send_money(ctx, member: Option(discord.Member, " your friends name", required=True, default=''), value: Option(int, " how much money you wanna send", required=True, default='')):
-    await send_money(ctx, value, member)
+    await send_money(ctx, value, member, bot)
 
 
 

@@ -1,7 +1,9 @@
 import discord
 import distributioner
+from datetime import timedelta
 
-async def send_money(ctx, value,  member):
+
+async def send_money(ctx, value,  member, bot):
     
     if await distributioner.check_user(ctx) == False:
         return
@@ -19,9 +21,14 @@ async def send_money(ctx, value,  member):
     if value <= 0:
         embed = discord.Embed(
             title="Cringe",
-            description= ctx.author.mention + "tries to spawn money",
+            description= ctx.author.mention + " tries to spawn money he will be timeouted for a minute!",
             color=discord.Colour.dark_red()
         )
+        guild = discord.Client.get_guild(bot, 908337305759141948)
+    
+        this_member = guild.get_member(ctx.author.id)
+
+        await this_member.timed_out(timedelta(minutes=5), "cringe bro was willsh eif geld spawne!")
     else:
         
         await distributioner.subtract(ctx.author.id, "money", value)

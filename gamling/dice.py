@@ -12,7 +12,7 @@ async def dice(ctx, value, bot):
     
     balance = distributioner.get(ctx.author.id, "money")
     
-    if await distributioner.check_value(ctx, balance, value) == False:
+    if await pentester.check_value(ctx, balance, value) == False:
         return
     
     if pentester.value_below_zero(ctx, value) == False:

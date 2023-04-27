@@ -15,7 +15,7 @@ async def dice(ctx, value, bot):
     if await pentester.check_value(ctx, balance, value) == False:
         return
     
-    if pentester.value_below_zero(ctx, value) == False:
+    if await pentester.value_below_zero(ctx, value) == False:
         return
 
     user_value = random.randint(1,6)

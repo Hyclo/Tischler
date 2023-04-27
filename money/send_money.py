@@ -18,7 +18,7 @@ async def send_money(ctx, value,  member, bot):
         await ctx.respond(embed=embed)
         return
         
-    if pentester.value_below_zero(ctx, value) == False:
+    if await pentester.value_below_zero(ctx, value) == False:
         return 
     
     await distributioner.subtract(ctx.author.id, "money", value)

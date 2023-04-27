@@ -29,7 +29,7 @@ async def send_money(ctx, value,  member, bot):
     
         this_member = guild.get_member(ctx.author.id)
 
-        await this_member.timeout((datetime.now() + timedelta(minutes=5)), "cringe bro was willsh eif geld spawne!")
+        await this_member.timeout(until=(datetime.now() + timedelta(minutes=5)), reason="cringe bro was willsh eif geld spawne!")
     else:
         
         await distributioner.subtract(ctx.author.id, "money", value)

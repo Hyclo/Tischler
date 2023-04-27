@@ -79,7 +79,7 @@ async def slash_leaderboard(ctx):
     
 @bot.slash_command(name = "dice", description = "throw the dice better than me to win some money")
 async def slash_dice(ctx, amount: Option(int, "gamble money", required=True, default='')):
-    await dice(ctx, amount)
+    await dice(ctx, amount, bot)
     
 @bot.slash_command(name = "migrate", description = "add new db item")
 async def slash_migrate(ctx, key: Option(str, "new key", required=True, default=''), value: Option(str, "default value", required=True, default='')):

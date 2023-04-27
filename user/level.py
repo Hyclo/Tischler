@@ -2,6 +2,7 @@ import pentester
 import distributioner
 import datetime
 import random
+import discord
 
 def get_difference_in_hours(date_1):
     date_format_str = "%Y-%m-%d %H:%M"
@@ -19,7 +20,7 @@ def get_difference_in_hours(date_1):
     
     return diff_in_minutes
 
-async def level(author_id):
+async def level(author_id, message):
     
     if await pentester.is_user_in_db(author_id) == False:
         return
@@ -41,4 +42,8 @@ async def level(author_id):
             stolen_levels = stolen_levels - 1
         
         if exp >= result:
+            
             distributioner.add(author_id, "level", 1)
+            
+            ctx = await discord.Bot.get_application_context(message, discord.ApplicationContext)
+            ctx.respond("You have reached a new Level", ephemeral=True)

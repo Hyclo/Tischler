@@ -39,7 +39,7 @@ async def on_message(message):
     if message.author.id == 1096041999011950632:
         return
     
-    await level(message.author.id)
+    await level(message.author.id, message)
 
 @tasks.loop(hours=24.0)
 async def deploy():

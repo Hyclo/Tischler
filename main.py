@@ -6,6 +6,7 @@ import datetime
 from discord.ext import tasks
 import subprocess
 import distributioner
+import pentester
 
 # file imports start
 from user.login import login
@@ -99,7 +100,7 @@ async def slash_send_money(ctx, member: Option(discord.Member, " your friends na
     
 @bot.slash_command(name = "redeploy", description = "redeploy bot, only for developers")
 async def slash_redeploy(ctx):
-    if distributioner.check_lenillian(ctx) == False:
+    if pentester.check_lenillian(ctx) == False:
         return
     else:
         await ctx.respond("Starting new deployment, I'm up again in 20s")

@@ -102,7 +102,7 @@ async def slash_redeploy(ctx):
     if distributioner.check_lenillian(ctx) == False:
         return
     else:
-        ctx.respond("Starting new deployment, I'm up again in 20s")
+        await ctx.respond("Starting new deployment, I'm up again in 20s")
         subprocess.call(['bash', './deployment/auto-deploy.sh'])
 
 

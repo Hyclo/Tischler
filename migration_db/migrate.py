@@ -1,10 +1,10 @@
 import json
-import distributioner
+import pentester
 import discord
 
 async def migrate(ctx, key, value):
     
-    if await distributioner.check_lenillian(ctx) == False:
+    if await pentester.check_lenillian(ctx) == False:
         return
     
     with open('data.json') as json_file:

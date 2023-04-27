@@ -1,9 +1,10 @@
 import discord
 import distributioner
+import pentester
 
 async def profile(ctx, bot):
     
-    if await distributioner.check_user(ctx) == False:
+    if await pentester.check_user(ctx) == False:
         return
     
     user = distributioner.get_user(ctx.author.id)

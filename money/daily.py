@@ -2,6 +2,7 @@ import distributioner
 import discord
 import random
 import datetime
+import pentester
 
 async def daily(ctx):
     
@@ -11,7 +12,7 @@ async def daily(ctx):
     
         money = random.randint(50, 250)
         
-        if await distributioner.check_user(ctx) == False:
+        if await pentester.check_user(ctx) == False:
             return
         
         distributioner.add(ctx.author.id, "money", money)

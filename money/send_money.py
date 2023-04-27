@@ -1,15 +1,14 @@
 import discord
 import distributioner
-from datetime import timedelta
-from datetime import datetime
+import pentester
 
 
 async def send_money(ctx, value,  member, bot):
     
-    if await distributioner.check_user(ctx) == False:
+    if await pentester.check_user(ctx) == False:
         return
     
-    if await distributioner.is_user_in_db(member.id) == False:
+    if await pentester.is_user_in_db(member.id) == False:
         embed = discord.Embed(
             title="418 I'm a teapot",
             description= "Just kidding " + "<@" + str(member.id) + ">" + " needs to use /login first to get a Job...",
@@ -19,28 +18,18 @@ async def send_money(ctx, value,  member, bot):
         await ctx.respond(embed=embed)
         return
         
-    if value <= 0:
-        embed = discord.Embed(
-            title="Cringe",
-            description= ctx.author.mention + " tries to spawn money he will be timeouted for 5 minutes!",
-            color=discord.Colour.dark_red()
-        )
-        guild = discord.Client.get_guild(bot, 908337305759141948)
+    if pentester.value_below_zero(ctx, value) == False:
+        return 
     
-        this_member = guild.get_member(ctx.author.id)
-
-        await this_member.timeout(until=(datetime.now() + timedelta(minutes=5)), reason="cringe bro was willsh eif geld spawne!")
-    else:
-        
-        await distributioner.subtract(ctx.author.id, "money", value)
-        
-        distributioner.add(member.id, "money", value)
-        
-        embed = discord.Embed(
-            title="Money Transfer",
-            description= ctx.author.mention + " has sent " + str(value) + " to <@" + str(member.id) + ">",
-            color=discord.Colour.brand_green()
-        )
+    await distributioner.subtract(ctx.author.id, "money", value)
+    
+    distributioner.add(member.id, "money", value)
+    
+    embed = discord.Embed(
+        title="Money Transfer",
+        description= ctx.author.mention + " has sent " + str(value) + " to <@" + str(member.id) + ">",
+        color=discord.Colour.brand_green()
+    )
     
     await ctx.respond(embed=embed)
     

@@ -2,6 +2,7 @@ import discord
 import distributioner
 import datetime
 import math
+import pentester
 
 def round_up(n, decimals=0):
     multiplier = 10 ** decimals
@@ -37,7 +38,7 @@ async def check_time(ctx):
     
 
 async def start_working(ctx):
-    if await distributioner.check_user(ctx) == False:
+    if await pentester.check_user(ctx) == False:
         return
     
     if await check_time(ctx) == False:
@@ -69,7 +70,7 @@ async def start_working(ctx):
 
 async def end_working(ctx):
     
-    if await distributioner.check_user(ctx) == False:
+    if await pentester.check_user(ctx) == False:
         return
     
     if distributioner.get(ctx.author.id, "working") == "False":

@@ -1,9 +1,10 @@
 import discord
 import distributioner
+import pentester
 
 async def balance(ctx):
     
-    if await distributioner.check_user(ctx) == False:
+    if await pentester.check_user(ctx) == False:
         return
     
     embed = discord.Embed(

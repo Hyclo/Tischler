@@ -1,4 +1,4 @@
-import discord
+import pentester
 import distributioner
 import datetime
 import random
@@ -21,7 +21,7 @@ def get_difference_in_hours(date_1):
 
 async def level(author_id):
     
-    if await distributioner.is_user_in_db(author_id) == False:
+    if await pentester.is_user_in_db(author_id) == False:
         return
     
     if get_difference_in_hours(distributioner.get(author_id, "timestamplevel")) < 1:

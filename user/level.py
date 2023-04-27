@@ -50,6 +50,6 @@ async def level(author_id, message, bot):
                 description= "<@" + str(message.author.id) + "> you have reached a new level!",
                 color=discord.Colour.blurple()
             )
-            embed.add_field(name="current Level", value=str(level + 1), inline=True)
+            embed.add_field(name="current Level " + str(level + 1), value="", inline=True)
             await message.reply(embed=embed)
             

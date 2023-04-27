@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import datetime
 from discord.ext import tasks
 import subprocess
+import distributioner
 
 # file imports start
 from user.login import login
@@ -95,6 +96,14 @@ async def slash_payday(ctx):
 @bot.slash_command(name = "transfer", description = "transfer money to a friend")
 async def slash_send_money(ctx, member: Option(discord.Member, " your friends name", required=True, default=''), value: Option(int, " how much money you wanna send", required=True, default='')):
     await send_money(ctx, value, member, bot)
+    
+@bot.slash_command(name = "redeploy", description = "redeploy bot, only for developers")
+async def slash_redeploy(ctx):
+    if distributioner.check_lenillian(ctx) == False:
+        return
+    else:
+        subprocess.call(['bash', './deployment/auto-deploy.sh'])
+        ctx.respond()
 
 
 

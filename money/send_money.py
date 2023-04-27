@@ -22,7 +22,7 @@ async def send_money(ctx, value,  member, bot):
     if value <= 0:
         embed = discord.Embed(
             title="Cringe",
-            description= ctx.author.mention + " tries to spawn money he will be timeouted for a minute!",
+            description= ctx.author.mention + " tries to spawn money he will be timeouted for 5 minutes!",
             color=discord.Colour.dark_red()
         )
         guild = discord.Client.get_guild(bot, 908337305759141948)

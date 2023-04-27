@@ -22,6 +22,7 @@ async def daily(ctx):
             description= ctx.author.mention + " got his daily salary!",
             color=discord.Colour.blurple()
         )
+        embed.add_field(name="Salary", value="Your Salary today is: " + str(money))
         embed.add_field(name="Balance", value="Your balance is currently at: " + str(distributioner.get(ctx.author.id, "money")))
     
     else:

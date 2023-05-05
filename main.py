@@ -43,7 +43,7 @@ async def on_message(message):
     if message.author.id == 623193587835994112:
         result = random.randint(0,1)
         if result == 0:
-            message.reply("send feet pics")
+            await message.reply("send feet pics")
 
     
     await level(message.author.id, message, bot)

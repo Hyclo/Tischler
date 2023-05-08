@@ -5,9 +5,7 @@ from dotenv import load_dotenv
 import datetime
 from discord.ext import tasks
 import subprocess
-import distributioner
 import pentester
-import random
 
 # file imports start
 from user.login import login
@@ -39,12 +37,6 @@ async def on_ready():
 async def on_message(message):
     if message.author.id == 1096041999011950632:
         return
-    
-    if message.author.id == 623193587835994112:
-        result = random.randint(0,1)
-        if result == 0:
-            await message.reply("send feet pics")
-
     
     await level(message.author.id, message, bot)
 

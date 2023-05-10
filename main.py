@@ -49,6 +49,8 @@ async def deploy():
     if deployee.get_stopper() == 1:
         deployee.set_stopper(0)
 
+# commands
+
 @bot.slash_command(name = "latency", description = "check the latency of Schreiner")
 async def check_latency(ctx):
     await ctx.respond("I'll respond in "+str(bot.latency)+"s")

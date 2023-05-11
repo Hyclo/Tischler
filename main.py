@@ -12,6 +12,7 @@ from user.login import login
 from user.profile import profile
 from user.leaderboard import leaderboard
 from user.level import level
+from user.level import rank
 from money.balance import balance
 from money.daily import daily
 from money.forbes import forbes
@@ -98,6 +99,10 @@ async def slash_payday(ctx):
 @bot.slash_command(name = "transfer", description = "transfer money to a friend")
 async def slash_send_money(ctx, member: Option(discord.Member, " your friends name", required=True, default=''), value: Option(int, " how much money you wanna send", required=True, default='')):
     await send_money(ctx, value, member, bot)
+
+@bot.slash_command(name = "rank", description = "the rank of you or the given user")
+async def slash_rank(ctx, member: Option(discord.Member, " your friends name", required=False, default='null')):
+    await rank(ctx, member, bot)
     
 @bot.slash_command(name = "redeploy", description = "redeploy bot, only for developers")
 async def slash_redeploy(ctx):

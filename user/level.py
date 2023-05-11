@@ -3,6 +3,11 @@ import distributioner
 import datetime
 import random
 import discord
+import math
+
+def round_up(n, decimals=0):
+    multiplier = 10 ** decimals
+    return math.ceil(n * multiplier) / multiplier
 
 def get_difference_in_hours(date_1):
     date_format_str = "%Y-%m-%d %H:%M"
@@ -52,4 +57,39 @@ async def level(author_id, message, bot):
             )
             embed.add_field(name="current Level " + str(level + 1), value="", inline=True)
             await message.reply(embed=embed)
+
+
+async def rank(ctx, member, bot):
+    
+    ctx_author = ctx.author
+
+    if member != 'null':
+        ctx_author = await bot.get_or_fetch_user(member.id)
+    
+    if await pentester.check_user(ctx, ctx_author) == False:
+        return
+
+    level = int(distributioner.get(ctx_author.id, "level"))
+    exp = distributioner.get(ctx_author.id, "exp")
+
+    result = 0
+    stolen_levels = level
+    while stolen_levels >= 0:
+        result += 5 * ((level-stolen_levels) ** 2) + ((level-stolen_levels) * 50) + 100
+        stolen_levels = stolen_levels - 1
+
+    rlst = result / 100
+    percent_to_next_lvl = round_up(exp / rlst)
+    piece = percent_to_next_lvl / 10
+    rest = 10 - piece
+
+    embed = discord.Embed(
+        title="Rank",
+        description= ctx_author.mention + "'s rank\r\n\r\n",
+        color=discord.Colour.blurple()
+    ) 
+    
+    embed.add_field(name="Level", value=str(level), inline=True)
+    embed.add_field(name="Experience", value=str(exp), inline=True)
+    embed.add_field(name="Progress to next level", value="[" + chr(0x00002588) * piece + " " * rest + "] " + str(percent_to_next_lvl) + "%", inline=False)
             

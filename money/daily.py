@@ -12,7 +12,7 @@ async def daily(ctx):
     
         money = random.randint(50, 250)
         
-        if await pentester.check_user(ctx) == False:
+        if await pentester.check_user(ctx.author) == False:
             return
         
         distributioner.add(ctx.author.id, "money", money)

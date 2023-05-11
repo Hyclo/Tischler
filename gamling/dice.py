@@ -7,7 +7,7 @@ from datetime import datetime
 
 async def dice(ctx, value, bot):
     
-    if await pentester.check_user(ctx) == False:
+    if await pentester.check_user(ctx.author) == False:
         return
     
     balance = distributioner.get(ctx.author.id, "money")

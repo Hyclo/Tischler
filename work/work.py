@@ -38,7 +38,7 @@ async def check_time(ctx):
     
 
 async def start_working(ctx):
-    if await pentester.check_user(ctx) == False:
+    if await pentester.check_user(ctx.author) == False:
         return
     
     if await check_time(ctx) == False:
@@ -70,7 +70,7 @@ async def start_working(ctx):
 
 async def end_working(ctx):
     
-    if await pentester.check_user(ctx) == False:
+    if await pentester.check_user(ctx.author) == False:
         return
     
     if distributioner.get(ctx.author.id, "working") == "False":

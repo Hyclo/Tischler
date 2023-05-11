@@ -60,7 +60,7 @@ async def slash_login(ctx):
     await login(ctx, bot)
     
 @bot.slash_command(name = "profile", description = "see your tischler working id")
-async def slash_profile(ctx):
+async def slash_profile(ctx, member: Option(discord.Member, "an other user", required=False, default='null')):
     await profile(ctx, bot)
 
 @bot.slash_command(name = "balance", description = "see how much money you have")

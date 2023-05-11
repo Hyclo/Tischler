@@ -2,22 +2,27 @@ import discord
 import distributioner
 import pentester
 
-async def profile(ctx, bot):
+async def profile(ctx, bot, member):
+
+    ctx_author = ctx.author
+
+    if member != 'null':
+        ctx_author = bot.get_orfetch_user(member.id)
     
-    if await pentester.check_user(ctx) == False:
+    if await pentester.check_user(ctx.author) == False:
         return
     
-    user = distributioner.get_user(ctx.author.id)
+    user = distributioner.get_user(ctx_author.id)
     
     embed = discord.Embed(
         title="Profile",
-        description= ctx.author.mention + "'s profile\r\n\r\n",
+        description= ctx_author.mention + "'s profile\r\n\r\n",
         color=discord.Colour.blurple()
     ) 
     
     embed.add_field(name="Stolen information", value="this is stolen information about this user. This user was created at " 
-                    + str(ctx.author.created_at) + " and the discord id is " 
-                    + str(ctx.author.id), inline=False)
+                    + str(ctx_author.created_at) + " and the discord id is " 
+                    + str(ctx_author.id), inline=False)
     
     for key, value in user.items():
         if key == "user":
@@ -25,6 +30,6 @@ async def profile(ctx, bot):
         else:
             embed.add_field(name=key, value=value, inline=True)
          
-    embed.set_thumbnail(url=ctx.author.display_avatar)
+    embed.set_thumbnail(url=ctx_author.display_avatar)
          
     await ctx.respond(embed=embed)

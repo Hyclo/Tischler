@@ -9,7 +9,7 @@ async def profile(ctx, bot, member):
     if member != 'null':
         ctx_author = await bot.get_or_fetch_user(member.id)
     
-    if await pentester.check_user(ctx_author) == False:
+    if await pentester.check_user(ctx, ctx_author) == False:
         return
     
     print(ctx_author.id)

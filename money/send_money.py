@@ -5,7 +5,7 @@ import pentester
 
 async def send_money(ctx, value,  member, bot):
     
-    if await pentester.check_user(ctx.author) == False:
+    if await pentester.check_user(ctx, ctx.author) == False:
         return
     
     if await pentester.is_user_in_db(member.id) == False:

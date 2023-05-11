@@ -4,7 +4,7 @@ import pentester
 
 async def balance(ctx):
     
-    if await pentester.check_user(ctx.author) == False:
+    if await pentester.check_user(ctx, ctx.author) == False:
         return
     
     embed = discord.Embed(

@@ -12,6 +12,8 @@ async def profile(ctx, bot, member):
     if await pentester.check_user(ctx.author) == False:
         return
     
+    print(ctx_author.id)
+
     user = distributioner.get_user(ctx_author.id)
     
     embed = discord.Embed(

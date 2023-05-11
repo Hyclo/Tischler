@@ -91,6 +91,6 @@ async def rank(ctx, member, bot):
     
     embed.add_field(name="Level", value=str(level), inline=True)
     embed.add_field(name="Experience", value=str(exp), inline=True)
-    embed.add_field(name="Progress to next level", value="|" + chr(0x00002588) * int(piece) + chr(0x000025AF) * int(rest) + "| " + str(percent_to_next_lvl) + "%", inline=False)
+    embed.add_field(name="Progress to next level", value="|" + chr(0x00002588) * int(piece) + chr(0x00000020) * int(rest) + "| " + str(percent_to_next_lvl) + "%", inline=False)
     
     await ctx.respond(embed=embed)

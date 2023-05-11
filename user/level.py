@@ -80,8 +80,8 @@ async def rank(ctx, member, bot):
 
     rlst = result / 100
     percent_to_next_lvl = round_up(exp / rlst)
-    piece = percent_to_next_lvl / 10
-    rest = 10 - piece
+    piece = round_up(percent_to_next_lvl / 10)
+    rest = round_up(10 - piece)
 
     embed = discord.Embed(
         title="Rank",

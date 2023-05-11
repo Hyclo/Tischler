@@ -95,4 +95,6 @@ async def rank(ctx, member, bot):
     
     create_image(level, exp, percent_to_next_lvl)
     
-    await ctx.respond(file="tmp.html")
+    file = discord.File(filename="tmp.html")
+    
+    await ctx.respond(file=file)

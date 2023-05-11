@@ -4,6 +4,10 @@ import datetime
 import random
 import discord
 import math
+import imgkit
+
+async def create_image(level, experience, percent):
+    html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Document</title><style>@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap");#myProgress {width: 20%;background-color: grey;}#myBar {width: '+ str(percent) +';height: 30px;background-color: green;}</style></head><body><h1 style="font-family: "Roboto Mono", monospace;">Rank Card</h1><div style="display:inline-flex"><div style="margin-right: 100px;"><p style="font-family: "Roboto Mono", monospace;">Level</p><p style="font-family: "Roboto Mono", monospace;">'+ str(level) +'</p></div><div><p style="font-family: "Roboto Mono", monospace;">Experience</p><p style="font-family: "Roboto Mono", monospace;">'+ str(experience) +'</p></div></div><div id="myProgress"><div id="myBar"></div></div><script>var i = 0;function move() {if (i == 0) {i = 1;var elem = document.getElementById("myBar");var width = 1;var id = setInterval(frame, 10);function frame() {if (width >= 100) {clearInterval(id);i = 0;} else {width++;elem.style.width = width + "%";}}}}</script></body></html>'
 
 def round_up(n, decimals=0):
     multiplier = 10 ** decimals
@@ -91,6 +95,6 @@ async def rank(ctx, member, bot):
     
     embed.add_field(name="Level", value=str(level), inline=True)
     embed.add_field(name="Experience", value=str(exp), inline=True)
-    embed.add_field(name="Progress to next level", value="|" + ":black_square:" * int(piece) + ":white_square:" * int(rest) + "| " + str(percent_to_next_lvl) + "%", inline=False)
+    embed.add_field(name="Progress to next level", value=":black_square:" * int(piece) + ":white_square:" * int(rest) + str(percent_to_next_lvl) + "%", inline=False)
     
     await ctx.respond(embed=embed)

@@ -93,4 +93,6 @@ async def rank(ctx, member, bot):
     rlst = result / 100
     percent_to_next_lvl = round_up(exp / rlst)
     
-    await ctx.respond(file=create_image(level, exp, percent_to_next_lvl))
+    create_image(level, exp, percent_to_next_lvl)
+    
+    await ctx.respond(file="tmp.html")

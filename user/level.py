@@ -14,8 +14,8 @@ def create_image(level, experience, percent):
     f.close()
     
     hti = html2image.Html2Image(size=(500,215))
-    hti.load_file('tmp.html')
-    hti.screenshot('tmp.html', "tmp.png")
+    hti.load_str(html, as_filename="test.html")
+    hti.screenshot("test.html", "tmp.png")
 
     
 

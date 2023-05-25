@@ -107,7 +107,5 @@ async def slash_redeploy(ctx):
         await ctx.respond("Starting new deployment, I'm up again in 20s")
         subprocess.call(['bash', './deployment/auto-deploy.sh'])
 
-
-
-deploy.start()
+backup.start()
 bot.run(os.getenv('TOKEN'))

@@ -67,4 +67,4 @@ async def send_request(ctx, member, betting_amount):
         color=discord.Colour.blurple()
     )
 
-    ctx.respond(embed=embed)
+    await ctx.respond(embed=embed)

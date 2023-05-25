@@ -10,32 +10,24 @@ def load_html(level, experience, percent):
 async def convert_html_to_png(level, exp, percent_to_next_lvl):
 
     load_html(level, exp, percent_to_next_lvl)
-    print("load")
 
     # Launch headless Chrome browser
     browser = await launch(executablePath='/usr/bin/chromium-browser', args=['--no-sandbox'])
-    print("Launch")
 
     # Create a new page
     page = await browser.newPage()
-    print("newPage")
 
     # Set the viewport size (optional)
     await page.setViewport({'width': 500, 'height': 215})
-    print("viewport")
 
     # Navigate to your HTML file
     await page.goto('file:///root/Tischler/tmp.html')
-    print("goto")
 
     # Wait for any additional content to load (optional)
     await asyncio.sleep(0.5)
-    print("sleep")
 
     # Take a screenshot of the page
     await page.screenshot({'path': 'output.png'})
-    print("screenshot")
 
     # Close the browser
     await browser.close()
-    print("close")

@@ -6,6 +6,7 @@ import datetime
 from discord.ext import tasks
 import subprocess
 import pentester
+import json
 
 # file imports start
 from user.login import login
@@ -42,6 +43,24 @@ async def on_message(message):
 @tasks.loop(hours=1.0)
 async def backup():
     subprocess.call(['bash', './backup/backup.sh'])
+
+@tasks.loop(hours=24.0)
+async def reset_online_gambling():
+    with open('gamling/online_dice.json') as json_file:
+        data = json.load(json_file)
+        
+        requests = data['requests']
+
+        tmp_requests = [{
+            "requestee": "I_have_requested_a_battle",
+            "requested": "I_have_been_requested_to_battle",
+            "betting_amount": 1000
+        }]
+
+        requests = tmp_requests
+
+    with open("gamling/online_dice.json", "a") as outfile:
+        json.dump(data, outfile)
 
 # commands
 
@@ -112,5 +131,6 @@ async def slash_redeploy(ctx):
         await ctx.respond("Starting new deployment, I'm up again in 20s")
         subprocess.call(['bash', './deployment/auto-deploy.sh'])
 
+reset_online_gambling.start()
 backup.start()
 bot.run(os.getenv('TOKEN'))

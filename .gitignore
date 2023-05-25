@@ -4,4 +4,4 @@ data.json
 *.json
 nohup.out
 tmp.html
-tmp.png
+output.png

@@ -21,7 +21,7 @@ async def convert_html_to_png(level, exp, percent_to_next_lvl):
     await page.setViewport({'width': 500, 'height': 215})
 
     # Navigate to your HTML file
-    await page.goto('C:/pers_workspace/Tischler/tmp.html')
+    await page.goto('root/Tischler/tmp.html')
 
     # Wait for any additional content to load (optional)
     await asyncio.sleep(0.5)

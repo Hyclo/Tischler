@@ -4,7 +4,7 @@ import distributioner
 import json
 
 def new_request(requestee, requested, betting_amount):
-    with open('online_dice.json') as json_file:
+    with open('./online_dice.json') as json_file:
         data = json.load(json_file)
         
         requests = data['requests']
@@ -17,11 +17,11 @@ def new_request(requestee, requested, betting_amount):
 
         requests.append(dict)
 
-    with open("data.json", "w") as outfile:
+    with open("./online_dice.json", "w") as outfile:
         json.dump(data, outfile)
 
 def check_requestee(requestee):
-    with open('online_dice.json') as json_file:
+    with open('./online_dice.json') as json_file:
         data = json.load(json_file)
         
         requests = data['requests']
@@ -30,14 +30,14 @@ def check_requestee(requestee):
             if request['requestee'] == requestee:
                 return False
 
-    with open("data.json", "w") as outfile:
+    with open("./online_dice.json", "w") as outfile:
         json.dump(data, outfile)
 
     return True
 
 
 def check_requested(requested):
-    with open('online_dice.json') as json_file:
+    with open('./online_dice.json') as json_file:
         data = json.load(json_file)
         
         requests = data['requests']
@@ -46,7 +46,7 @@ def check_requested(requested):
             if request['requested'] == requested:
                 return False
 
-    with open("data.json", "w") as outfile:
+    with open("./online_dice.json", "w") as outfile:
         json.dump(data, outfile)
 
     return True

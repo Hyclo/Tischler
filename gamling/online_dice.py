@@ -54,9 +54,23 @@ def check_requested(requested):
 async def send_request(ctx, member, betting_amount):
 
     if check_requestee(ctx.author.id) == False:
+        embed = discord.Embed(
+                title="449 The request should be retried after doing the appropriate action",
+                description= "Just kidding " + ctx.mention + " you already challenged someone",
+                color=discord.Colour.dark_red()
+            )
+            
+        await ctx.respond(embed=embed)
         return
     
     if check_requested(member.id) == False:
+        embed = discord.Embed(
+                title="449 The request should be retried after doing the appropriate action",
+                description= "Just kidding " + ctx.mention + ", <@" + member.id +"> is already being challenged",
+                color=discord.Colour.dark_red()
+            )
+            
+        await ctx.respond(embed=embed)
         return
 
     new_request(requestee=ctx.author.id, requested=member.id, betting_amount=betting_amount)

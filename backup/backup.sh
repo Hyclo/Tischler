@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cp ../data.json ../../backup/data.json$(date)
+cp ././data.json ./././backup/backup.json
 
 exit 0

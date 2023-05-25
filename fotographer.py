@@ -25,7 +25,7 @@ async def convert_html_to_png(level, exp, percent_to_next_lvl):
     print("viewport")
 
     # Navigate to your HTML file
-    await page.goto('root/Tischler/tmp.html')
+    await page.goto('file:///root/Tischler/tmp.html')
     print("goto")
 
     # Wait for any additional content to load (optional)

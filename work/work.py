@@ -104,7 +104,7 @@ async def end_working(ctx):
         
         distributioner.add(ctx.author.id, "money", money)
 
-        embed.add_field(name="Hours worked", value=str(worked_hours), inline=True)
+        embed.add_field(name="Hours worked", value=str(worked_hours) + "h", inline=True)
         
         await ctx.respond(embed=embed)
         

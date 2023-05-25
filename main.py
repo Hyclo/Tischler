@@ -57,14 +57,6 @@ async def reset_online_gambling():
 
             requests.pop()
 
-        tmp_request = {
-            "requestee": "I_have_requested_a_battle",
-            "requested": "I_have_been_requested_to_battle",
-            "betting_amount": 1000
-        }
-
-        requests.append(tmp_request)
-
     with open("gamling/online_dice.json", "w") as outfile:
         json.dump(data, outfile)
 

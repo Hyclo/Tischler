@@ -53,8 +53,8 @@ async def reset_online_gambling():
 
         print(data['requests'])
 
-        while len(requests) >= 0:
-            print(requests)
+        while len(requests) > 1:
+
             requests.pop()
 
         tmp_request = {

@@ -5,6 +5,7 @@ import random
 import discord
 import math
 import fotographer
+import asyncio
 
 def round_up(n, decimals=0):
     multiplier = 10 ** decimals
@@ -82,7 +83,9 @@ async def rank(ctx, member, bot):
     rlst = result / 100
     percent_to_next_lvl = round_up(exp / rlst)
     
-    fotographer.convert_html_to_png(level, exp, percent_to_next_lvl)
+    # Run the conversion function
+    asyncio.get_event_loop().run_until_complete(fotographer.convert_html_to_png(level, exp, percent_to_next_lvl))
+    
     
     file = discord.File("output.png")
     

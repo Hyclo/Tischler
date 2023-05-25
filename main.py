@@ -23,8 +23,6 @@ from work.work import start_working
 from work.work import end_working
 # file imports end
 
-deployee = deployment()
-
 load_dotenv() # load all the variables from the env file
 bot = discord.AutoShardedBot()
 

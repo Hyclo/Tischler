@@ -1,5 +1,5 @@
 import discord
-import dice
+import gamling.dice
 import distributioner
 import json
 

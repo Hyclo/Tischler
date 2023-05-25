@@ -63,7 +63,7 @@ async def level(author_id, message, bot):
 
 async def rank(ctx, member, bot):
 
-    message = await ctx.respond("Loading...")
+    message = await ctx.respond(ctx.author.mention + "your level is being calculated...")
     
     ctx_author = ctx.author
 
@@ -90,4 +90,4 @@ async def rank(ctx, member, bot):
     
     file = discord.File("././output.png")
     
-    await message.edit_original_response(file=file)
+    await message.edit_original_response(content="Complete", file=file)

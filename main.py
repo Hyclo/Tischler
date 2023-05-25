@@ -50,6 +50,11 @@ async def deploy():
     if deployee.get_stopper() == 1:
         deployee.set_stopper(0)
 
+@tasks.loop(hours=1.0)
+async def backup():
+    subprocess.call(['bash', './backup/backup.sh'])
+
+
 # commands
 
 @bot.slash_command(name = "latency", description = "check the latency of Schreiner")

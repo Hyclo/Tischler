@@ -88,7 +88,6 @@ async def rank(ctx, member, bot):
     # Run the conversion function
     await fotographer.convert_html_to_png(level, exp, percent_to_next_lvl)
     
-    
-    file = discord.File("../output.png")
+    file = discord.File("././output.png")
     
     await message.edit_original_response(file=file)

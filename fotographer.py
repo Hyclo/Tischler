@@ -11,8 +11,9 @@ async def convert_html_to_png(level, exp, percent_to_next_lvl):
 
     load_html(level, exp, percent_to_next_lvl)
     print("load")
+
     # Launch headless Chrome browser
-    browser = await launch()
+    browser = await launch(executablePath='usr/bin/chromium-browser', args=['--no-sandbox'])
     print("Launch")
 
     # Create a new page

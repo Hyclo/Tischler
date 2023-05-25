@@ -62,6 +62,8 @@ async def level(author_id, message, bot):
 
 
 async def rank(ctx, member, bot):
+
+    ctx.respond("Loading...")
     
     ctx_author = ctx.author
 
@@ -84,7 +86,7 @@ async def rank(ctx, member, bot):
     percent_to_next_lvl = round_up(exp / rlst)
     
     # Run the conversion function
-    asyncio.get_event_loop().run_until_complete(await fotographer.convert_html_to_png(level, exp, percent_to_next_lvl))
+    await fotographer.convert_html_to_png(level, exp, percent_to_next_lvl)
     
     
     file = discord.File("output.png")

@@ -4,7 +4,7 @@ import datetime
 import math
 import pentester
 
-def round_up(n, decimals=0):
+def round_up(n, decimals):
     multiplier = 10 ** decimals
     return math.ceil(n * multiplier) / multiplier
 
@@ -81,11 +81,11 @@ async def end_working(ctx):
         )
         await ctx.respond(embed=embed)
     else:
-        worked_hours = get_difference_in_hours(distributioner.get(ctx.author.id, "timestampwork"))
+        worked_hours = round_up(get_difference_in_hours(distributioner.get(ctx.author.id, "timestampwork")), 2)
 
         money = worked_hours * 10 * ((distributioner.get(ctx.author.id, "level") + 1) / 10)
         
-        money = round_up(money)
+        money = round_up(money, 0)
         
         embed = discord.Embed(
             title="Tischler",

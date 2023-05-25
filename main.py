@@ -59,7 +59,7 @@ async def reset_online_gambling():
 
         requests = tmp_requests
 
-    with open("gamling/online_dice.json", "a") as outfile:
+    with open("gamling/online_dice.json", "w") as outfile:
         json.dump(data, outfile)
 
 # commands

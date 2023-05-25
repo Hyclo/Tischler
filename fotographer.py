@@ -39,5 +39,3 @@ async def convert_html_to_png(level, exp, percent_to_next_lvl):
     # Close the browser
     await browser.close()
     print("close")
-
-asyncio.get_event_loop().run_until_complete(convert_html_to_png(12, 12000, 25))

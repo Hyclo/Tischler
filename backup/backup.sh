@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cp ././data.json ./././backup/backup.json
+cp ././data.json /root/backup/backup.json
 
 exit 0

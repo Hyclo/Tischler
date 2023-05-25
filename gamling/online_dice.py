@@ -4,7 +4,7 @@ import distributioner
 import json
 
 def new_request(requestee, requested, betting_amount):
-    with open('dice_online.json') as json_file:
+    with open('online_dice.json') as json_file:
         data = json.load(json_file)
         
         requests = data['requests']
@@ -21,7 +21,7 @@ def new_request(requestee, requested, betting_amount):
         json.dump(data, outfile)
 
 def check_requestee(requestee):
-    with open('dice_online.json') as json_file:
+    with open('online_dice.json') as json_file:
         data = json.load(json_file)
         
         requests = data['requests']
@@ -37,7 +37,7 @@ def check_requestee(requestee):
 
 
 def check_requested(requested):
-    with open('dice_online.json') as json_file:
+    with open('online_dice.json') as json_file:
         data = json.load(json_file)
         
         requests = data['requests']

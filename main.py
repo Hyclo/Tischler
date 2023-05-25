@@ -18,6 +18,7 @@ from money.daily import daily
 from money.forbes import forbes
 from money.send_money import send_money
 from gamling.dice import dice
+from gamling.online_dice import send_request
 from migration_db.migrate import migrate
 from work.work import start_working
 from work.work import end_working
@@ -77,7 +78,8 @@ async def slash_dice(ctx, amount: Option(int, "gamble money", required=True, def
     await dice(ctx, amount, bot)
     
 @bot.slash_command(name = "migrate", description = "add new db item")
-async def slash_migrate(ctx, key: Option(str, "new key", required=True, default=''), value: Option(str, "default value", required=True, default='')):
+async def slash_migrate(ctx, key: Option(str, "new key", required=True, default=''),
+            value: Option(str, "default value", required=True, default='')):
     await migrate(ctx, key, value)
     
 @bot.slash_command(name = "work", description = "work to get more money")
@@ -89,12 +91,18 @@ async def slash_payday(ctx):
     await end_working(ctx)
     
 @bot.slash_command(name = "transfer", description = "transfer money to a friend")
-async def slash_send_money(ctx, member: Option(discord.Member, " your friends name", required=True, default=''), value: Option(int, " how much money you wanna send", required=True, default='')):
+async def slash_send_money(ctx, member: Option(discord.Member, " your friends name", required=True, default=''),
+            value: Option(int, " how much money you wanna send", required=True, default='')):
     await send_money(ctx, value, member, bot)
 
 @bot.slash_command(name = "rank", description = "the rank of you or the given user")
 async def slash_rank(ctx, member: Option(discord.Member, " your friends name", required=False, default='null')):
     await rank(ctx, member, bot)
+
+@bot.slash_command(name = "challenge", description = "challenge an other user to a game of dice")
+async def slashsend_request(ctx, member: Option(discord.Member, " your friends name", required=True, default='null'),
+            bet: Option(int, " how much you want to bet", required=True, default='null')):
+    await send_request(ctx, member, bet)
     
 @bot.slash_command(name = "redeploy", description = "redeploy bot, only for developers")
 async def slash_redeploy(ctx):

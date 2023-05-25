@@ -81,8 +81,9 @@ async def end_working(ctx):
         )
         await ctx.respond(embed=embed)
     else:
-        
-        money = get_difference_in_hours(distributioner.get(ctx.author.id, "timestampwork")) * 10 * ((distributioner.get(ctx.author.id, "level") + 1) / 10)
+        worked_hours = get_difference_in_hours(distributioner.get(ctx.author.id, "timestampwork"))
+
+        money = worked_hours * 10 * ((distributioner.get(ctx.author.id, "level") + 1) / 10)
         
         money = round_up(money)
         
@@ -102,6 +103,8 @@ async def end_working(ctx):
         distributioner.update(ctx.author.id, "working", str(False))
         
         distributioner.add(ctx.author.id, "money", money)
+
+        embed.add_field(name="Hours worked", value=str(worked_hours), inline=True)
         
         await ctx.respond(embed=embed)
         

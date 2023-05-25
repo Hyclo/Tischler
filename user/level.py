@@ -63,7 +63,7 @@ async def level(author_id, message, bot):
 
 async def rank(ctx, member, bot):
 
-    ctx.respond("Loading...")
+    message = await ctx.respond("Loading...")
     
     ctx_author = ctx.author
 
@@ -89,6 +89,6 @@ async def rank(ctx, member, bot):
     await fotographer.convert_html_to_png(level, exp, percent_to_next_lvl)
     
     
-    file = discord.File("output.png")
+    file = discord.File("../output.png")
     
-    await ctx.respond(file=file)
+    await message.edit_original_response(file=file)

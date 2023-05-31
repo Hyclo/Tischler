@@ -82,7 +82,8 @@ async def rank(ctx, member, bot):
         result += 5 * ((level-stolen_levels) ** 2) + ((level-stolen_levels) * 50) + 100
         stolen_levels = stolen_levels - 1
     
-    percent_to_next_lvl = round_up(result / 100 * exp)
+    one_percent = result / 100
+    percent_to_next_lvl = round_up(exp / one_percent)
     
     # Run the conversion function
     await fotographer.convert_html_to_png(level, exp, percent_to_next_lvl)

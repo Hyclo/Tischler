@@ -92,7 +92,7 @@ async def slash_leaderboard(ctx):
     
 @bot.slash_command(name = "dice", description = "throw the dice better than me to win some money")
 async def slash_dice(ctx, value: Option(int, "gamble money", required=True, default=''), 
-            member: Option(discord.Member, " your friends name", required=True, default='none')):
+            member: Option(discord.Member, " your friends name", required=False, default='none')):
     await dice_chooser(ctx, value, member, bot)
     
 @bot.slash_command(name = "migrate", description = "add new db item")

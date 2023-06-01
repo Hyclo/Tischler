@@ -1,7 +1,14 @@
 import discord
-from gamling.dice import online_dice
 import pentester
 import json
+from gamling.dice import online_dice
+from gamling.dice import dice
+
+async def dice_chooser(ctx, value, member, bot):
+    if member != "none":
+        await send_request(ctx, member, value)
+    else:
+        await dice(ctx, value, bot)
 
 async def find_request(ctx, requestee, requested):
     with open('gamling/online_dice.json') as json_file:

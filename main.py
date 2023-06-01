@@ -18,7 +18,7 @@ from money.balance import balance
 from money.daily import daily
 from money.forbes import forbes
 from money.send_money import send_money
-from gamling.dice import dice_chooser
+from gamling.online_dice import dice_chooser
 from gamling.online_dice import accept
 from gamling.online_dice import deny
 from gamling.online_dice import clear_requests

@@ -2,15 +2,6 @@ import discord
 import distributioner
 import pentester
 import random
-from datetime import timedelta
-from datetime import datetime
-from gamling.online_dice import send_request
-
-async def dice_chooser(ctx, value, member, bot):
-    if member != "none":
-        await send_request(ctx, member, value)
-    else:
-        await dice(ctx, value, bot)
 
 async def dice(ctx, value, bot):
     if await pentester.check_user(ctx, ctx.author) == False:

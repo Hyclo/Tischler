@@ -69,7 +69,7 @@ async def online_dice(ctx, requestee, requested, value):
     elif requestee_value > requested_value:
         embed = discord.Embed(
             title="Game Result",
-            description="<@" + str(requestee.id) + "> won and scammed " + value + "$ of <@" +str(requested.id)+ ">",
+            description="<@" + str(requestee.id) + "> won and scammed " +str(value)+ "$ of <@" +str(requested.id)+ ">",
             color=discord.Colour.blurple()
         )
         distributioner.add(requestee.id, "money", value)
@@ -77,7 +77,7 @@ async def online_dice(ctx, requestee, requested, value):
     else:
         embed = discord.Embed(
             title="Game Result",
-            description="<@" +str(requested.id)+ "> won and scammed " + value + "$ of <@" + str(requestee.id) + ">",
+            description="<@" +str(requested.id)+ "> won and scammed " +str(value)+ "$ of <@" + str(requestee.id) + ">",
             color=discord.Colour.blurple()
         )
         distributioner.add(requested.id, "money", value)

@@ -1,6 +1,7 @@
 import discord
 from gamling.dice import online_dice
 import distributioner
+import pentester
 import json
 
 async def find_request(ctx, requestee, requested):
@@ -73,7 +74,6 @@ def check_requestee(requestee):
 
     return True
 
-
 def check_requested(requested):
     with open('gamling/online_dice.json') as json_file:
         data = json.load(json_file)
@@ -90,6 +90,12 @@ def check_requested(requested):
     return True
 
 async def send_request(ctx, member, betting_amount):
+
+    if await pentester.check_user(ctx, ctx.author) == False:
+        return
+    
+    if await pentester.check_user(ctx, member) == False:
+        return
 
     if check_requestee(ctx.author.id) == False:
         embed = discord.Embed(
@@ -143,3 +149,16 @@ async def deny(ctx, member):
     replace_request(ctx.author.id, member.id, request)
 
     return
+
+async def clear_requests(ctx):
+    with open('gamling/online_dice.json') as json_file:
+        data = json.load(json_file)
+        
+        requests = data['requests']
+
+        for request in requests:
+            if request["requestee"] == ctx.author.id and request["state"] == "open":
+                request["state"] = "done"
+
+    with open("gamling/online_dice.json", "w") as outfile:
+        json.dump(data, outfile)

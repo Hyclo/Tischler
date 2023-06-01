@@ -22,6 +22,7 @@ from gamling.dice import dice
 from gamling.online_dice import send_request
 from gamling.online_dice import accept
 from gamling.online_dice import deny
+from gamling.online_dice import clear_requests
 from migration_db.migrate import migrate
 from work.work import start_working
 from work.work import end_working
@@ -128,6 +129,10 @@ async def slash_accept(ctx, member: Option(discord.Member, " your friends name",
 @bot.slash_command(name = "challenge_deny", description = "deny the challenge an other user to a game of dice")
 async def slash_deny(ctx, member: Option(discord.Member, " your friends name", required=True, default='null')):
     await deny(ctx, member)
+
+@bot.slash_command(name = "challenge_clear", description = "clear your requests")
+async def slash_clear_requests(ctx):
+    await clear_requests(ctx)
     
 @bot.slash_command(name = "redeploy", description = "redeploy bot, only for developers")
 async def slash_redeploy(ctx):

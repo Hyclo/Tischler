@@ -161,6 +161,13 @@ async def deny(ctx, member):
     with open("gamling/online_dice.json", "w") as outfile:
         json.dump(data, outfile)
 
+    embed = discord.Embed(
+        title="dice challenge",
+        description=ctx.author.mention + " declined the challenge of <@" + str(member.id) + ">",
+        color=discord.Colour.blurple()
+    )
+
+    await ctx.respond(embed=embed)
     return
 
 async def clear_requests(ctx):

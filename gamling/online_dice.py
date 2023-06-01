@@ -131,11 +131,17 @@ async def accept(ctx, member):
     if await find_request(ctx, member.id, ctx.author.id) == False:
         return
     
-    request = await find_request(ctx, member.id, ctx.author.id)
+    with open('gamling/online_dice.json') as json_file:
+        data = json.load(json_file)
+        
+        requests = data['requests']
 
-    request["state"] = "done"
-    
-    replace_request(ctx.author.id, member.id, request)
+        for request in requests:
+            if request["requestee"] == ctx.author.id and request["state"] == "open":
+                request["state"] = "done"
+
+    with open("gamling/online_dice.json", "w") as outfile:
+        json.dump(data, outfile)
 
     await online_dice(ctx, member, ctx.author, int(request["betting_amount"]))
     return
@@ -143,11 +149,17 @@ async def accept(ctx, member):
 async def deny(ctx, member):
     if await find_request(ctx, member.id, ctx.author.id) == False:
         return
-    request = await find_request(ctx, member.id, ctx.author.id)
+    with open('gamling/online_dice.json') as json_file:
+        data = json.load(json_file)
+        
+        requests = data['requests']
 
-    request["state"] = "done"
+        for request in requests:
+            if request["requestee"] == ctx.author.id and request["state"] == "open":
+                request["state"] = "done"
 
-    replace_request(ctx.author.id, member.id, request)
+    with open("gamling/online_dice.json", "w") as outfile:
+        json.dump(data, outfile)
 
     return
 

@@ -66,7 +66,7 @@ def check_requestee(requestee):
         requests = data['requests']
 
         for request in requests:
-            if request['requestee'] == requestee:
+            if request['requestee'] == requestee and request["state"] == "open":
                 return False
 
     with open("gamling/online_dice.json", "w") as outfile:
@@ -81,7 +81,7 @@ def check_requested(requested):
         requests = data['requests']
 
         for request in requests:
-            if request['requested'] == requested:
+            if request['requested'] == requested and request["state"] == "open":
                 return False
 
     with open("gamling/online_dice.json", "w") as outfile:

@@ -76,13 +76,19 @@ async def rank(ctx, member, bot):
     level = int(distributioner.get(ctx_author.id, "level"))
     exp = distributioner.get(ctx_author.id, "exp")
 
-    result = 0
     stolen_levels = level
+
+    required_exp = 0
     while stolen_levels >= 0:
-        result += 5 * ((level-stolen_levels) ** 2) + ((level-stolen_levels) * 50) + 100
+        required_exp += 5 * ((level-stolen_levels) ** 2) + ((level-stolen_levels) * 50) + 100
+        stolen_levels = stolen_levels - 1
+
+    current_level_required_exp = 0
+    while (stolen_levels - 1)>= 0:
+        current_level_required_exp += 5 * ((level-stolen_levels) ** 2) + ((level-stolen_levels) * 50) + 100
         stolen_levels = stolen_levels - 1
     
-    percent_to_next_lvl = round_up(exp / result * 100)
+    percent_to_next_lvl = round_up((exp - current_level_required_exp) / (required_exp - current_level_required_exp) * 100)
     
     # Run the conversion function
     await fotographer.convert_html_to_png(level, exp, percent_to_next_lvl)

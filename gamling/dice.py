@@ -63,13 +63,13 @@ async def online_dice(ctx, requestee, requested, value):
     if requestee_value == requested_value:
         embed = discord.Embed(
             title="Result",
-            description= "<@" + requestee.id + " and <@" + requested.id + "> both diced the same value",
+            description= "<@" + str(requestee.id) + " and <@" +str(requested.id)+ "> both diced the same value",
             color=discord.Colour.blurple()
         )
     elif requestee_value > requested_value:
         embed = discord.Embed(
             title="Game Result",
-            description="<@" + requestee.id + "> won and scammed " + value + "$ of <@" + requested.id + ">",
+            description="<@" + str(requestee.id) + "> won and scammed " + value + "$ of <@" +str(requested.id)+ ">",
             color=discord.Colour.blurple()
         )
         distributioner.add(requestee.id, "money", value)
@@ -77,7 +77,7 @@ async def online_dice(ctx, requestee, requested, value):
     else:
         embed = discord.Embed(
             title="Game Result",
-            description="<@" + requested.id + "> won and scammed " + value + "$ of <@" + requestee.id + ">",
+            description="<@" +str(requested.id)+ "> won and scammed " + value + "$ of <@" + str(requestee.id) + ">",
             color=discord.Colour.blurple()
         )
         distributioner.add(requested.id, "money", value)

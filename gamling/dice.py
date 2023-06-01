@@ -4,9 +4,15 @@ import pentester
 import random
 from datetime import timedelta
 from datetime import datetime
+from online_dice import send_request
+
+async def dice_chooser(ctx, value, member, bot):
+    if member != "none":
+        await send_request(ctx, member, value)
+    else:
+        await dice(ctx, value, bot)
 
 async def dice(ctx, value, bot):
-    
     if await pentester.check_user(ctx, ctx.author) == False:
         return
     
@@ -88,5 +94,3 @@ async def online_dice(ctx, requestee, requested, value):
     embed.add_field(name="The bet", value=str(value))
         
     await ctx.respond(embed=embed)
-    
-    

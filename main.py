@@ -18,8 +18,7 @@ from money.balance import balance
 from money.daily import daily
 from money.forbes import forbes
 from money.send_money import send_money
-from gamling.dice import dice
-from gamling.online_dice import send_request
+from gamling.dice import dice_chooser
 from gamling.online_dice import accept
 from gamling.online_dice import deny
 from gamling.online_dice import clear_requests
@@ -92,8 +91,9 @@ async def slash_leaderboard(ctx):
     await leaderboard(ctx, bot)
     
 @bot.slash_command(name = "dice", description = "throw the dice better than me to win some money")
-async def slash_dice(ctx, amount: Option(int, "gamble money", required=True, default='')):
-    await dice(ctx, amount, bot)
+async def slash_dice(ctx, value: Option(int, "gamble money", required=True, default=''), 
+            member: Option(discord.Member, " your friends name", required=True, default='none')):
+    await dice_chooser(ctx, value, member, bot)
     
 @bot.slash_command(name = "migrate", description = "add new db item")
 async def slash_migrate(ctx, key: Option(str, "new key", required=True, default=''),
@@ -117,11 +117,6 @@ async def slash_send_money(ctx, member: Option(discord.Member, " your friends na
 async def slash_rank(ctx, member: Option(discord.Member, " your friends name", required=False, default='null')):
     await rank(ctx, member, bot)
 
-@bot.slash_command(name = "challenge", description = "challenge an other user to a game of dice")
-async def slashsend_request(ctx, member: Option(discord.Member, " your friends name", required=True, default='null'),
-            bet: Option(int, " how much you want to bet", required=True, default='null')):
-    await send_request(ctx, member, bet)
-
 @bot.slash_command(name = "challenge_accept", description = "accept the challenge of an other user to a game of dice")
 async def slash_accept(ctx, member: Option(discord.Member, " your friends name", required=True, default='null')):
     await accept(ctx, member)
@@ -133,14 +128,6 @@ async def slash_deny(ctx, member: Option(discord.Member, " your friends name", r
 @bot.slash_command(name = "challenge_clear", description = "clear your requests")
 async def slash_clear_requests(ctx):
     await clear_requests(ctx)
-    
-@bot.slash_command(name = "redeploy", description = "redeploy bot, only for developers")
-async def slash_redeploy(ctx):
-    if pentester.check_lenillian(ctx) == False:
-        return
-    else:
-        await ctx.respond("Starting new deployment, I'm up again in 20s")
-        subprocess.call(['bash', './deployment/auto-deploy.sh'])
 
 reset_online_gambling.start()
 backup.start()

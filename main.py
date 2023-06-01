@@ -20,6 +20,8 @@ from money.forbes import forbes
 from money.send_money import send_money
 from gamling.dice import dice
 from gamling.online_dice import send_request
+from gamling.online_dice import accept
+from gamling.online_dice import deny
 from migration_db.migrate import migrate
 from work.work import start_working
 from work.work import end_working
@@ -50,8 +52,6 @@ async def reset_online_gambling():
         data = json.load(json_file)
         
         requests = data['requests']
-
-        print(data['requests'])
 
         while len(requests) > 1:
 
@@ -120,6 +120,14 @@ async def slash_rank(ctx, member: Option(discord.Member, " your friends name", r
 async def slashsend_request(ctx, member: Option(discord.Member, " your friends name", required=True, default='null'),
             bet: Option(int, " how much you want to bet", required=True, default='null')):
     await send_request(ctx, member, bet)
+
+@bot.slash_command(name = "challenge_accept", description = "accept the challenge of an other user to a game of dice")
+async def slash_accept(ctx, member: Option(discord.Member, " your friends name", required=True, default='null')):
+    await accept(ctx, member)
+
+@bot.slash_command(name = "challenge_deny", description = "deny the challenge an other user to a game of dice")
+async def slash_deny(ctx, member: Option(discord.Member, " your friends name", required=True, default='null')):
+    await deny(ctx, member)
     
 @bot.slash_command(name = "redeploy", description = "redeploy bot, only for developers")
 async def slash_redeploy(ctx):

@@ -1,7 +1,44 @@
 import discord
-import gamling.dice
+from gamling.dice import online_dice
 import distributioner
 import json
+
+async def find_request(ctx, requestee, requested):
+    with open('gamling/online_dice.json') as json_file:
+        data = json.load(json_file)
+        
+        requests = data['requests']
+
+        open_request = {}
+
+        for request in requests:
+            if request["requestee"] == requestee and request["requested"] == requested and request["state"] == "open":
+                open_request = request
+
+        if open_request == {}:
+            embed = discord.Embed(
+                title="449 The request should be retried after doing the appropriate action",
+                description= "Just kidding " + ctx.author.mention + " this user hasn't challenged you",
+                color=discord.Colour.dark_red()
+            )
+            
+            await ctx.respond(embed=embed)
+            return False
+        
+        return open_request
+    
+def replace_request(requestee, requested, newValue):
+    with open('gamling/online_dice.json') as json_file:
+        data = json.load(json_file)
+        
+        requests = data['requests']
+
+        for request in requests:
+            if request["requestee"] == requestee and request["requested"] == requested and request["state"] == "open":
+                request = newValue
+
+    with open("gamling/online_dice.json", "w") as outfile:
+        json.dump(data, outfile)
 
 def new_request(requestee, requested, betting_amount):
     with open('gamling/online_dice.json') as json_file:
@@ -12,7 +49,8 @@ def new_request(requestee, requested, betting_amount):
         dict = {
             "requestee": requestee,
             "requested": requested,
-            "betting_amount": betting_amount
+            "betting_amount": betting_amount,
+            "state": "open"
         }
 
         requests.append(dict)
@@ -77,8 +115,31 @@ async def send_request(ctx, member, betting_amount):
 
     embed = discord.Embed(
         title="dice challenge",
-        description=ctx.author.mention + " challenged <@" + str(member.id) + "> to game of dice",
+        description=ctx.author.mention + " challenged <@" + str(member.id) + "> to game of dice with a bet of: " + str(betting_amount),
         color=discord.Colour.blurple()
     )
 
     await ctx.respond(embed=embed)
+
+async def accept(ctx, member):
+    if find_request(ctx.author.id, member.id) == False:
+        return
+    request = find_request(ctx, ctx.author.id, member.id)
+
+    request["state"] = "done"
+    
+    replace_request(ctx.author.id, member.id, request)
+
+    online_dice(ctx)
+    return
+
+async def deny(ctx, member):
+    if find_request(ctx.author.id, member.id) == False:
+        return
+    request = find_request(ctx, ctx.author.id, member.id)
+
+    request["state"] = "done"
+
+    replace_request(ctx.author.id, member.id, request)
+
+    return

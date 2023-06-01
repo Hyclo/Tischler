@@ -163,3 +163,5 @@ async def clear_requests(ctx):
 
     with open("gamling/online_dice.json", "w") as outfile:
         json.dump(data, outfile)
+
+    await ctx.respond("challenges cleared")

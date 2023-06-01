@@ -137,7 +137,7 @@ async def accept(ctx, member):
     
     replace_request(ctx.author.id, member.id, request)
 
-    online_dice(ctx)
+    online_dice(ctx, member, ctx.author, int(request["betting_amount"]))
     return
 
 async def deny(ctx, member):

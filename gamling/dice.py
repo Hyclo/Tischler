@@ -4,7 +4,7 @@ import pentester
 import random
 from datetime import timedelta
 from datetime import datetime
-from online_dice import send_request
+from gamling.online_dice import send_request
 
 async def dice_chooser(ctx, value, member, bot):
     if member != "none":

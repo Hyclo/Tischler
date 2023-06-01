@@ -137,7 +137,7 @@ async def accept(ctx, member):
         requests = data['requests']
 
         for request in requests:
-            if request["requestee"] == ctx.author.id and request["state"] == "open":
+            if request["requested"] == ctx.author.id and request["state"] == "open":
                 request["state"] = "done"
 
     with open("gamling/online_dice.json", "w") as outfile:
@@ -155,7 +155,7 @@ async def deny(ctx, member):
         requests = data['requests']
 
         for request in requests:
-            if request["requestee"] == ctx.author.id and request["state"] == "open":
+            if request["requested"] == ctx.author.id and request["state"] == "open":
                 request["state"] = "done"
 
     with open("gamling/online_dice.json", "w") as outfile:

@@ -52,10 +52,10 @@ async def dice(ctx, value, bot):
 async def online_dice(ctx, requestee, requested, value):
 
     requested_balance = distributioner.get(requested.id, "money")
-    pentester.check_value(ctx, requested_balance, value, requested)
+    pentester.check_value(ctx, requested_balance, value, [requested])
 
     requestee_balance = distributioner.get(requestee.id, "money")
-    pentester.check_value(ctx, requestee_balance, value, requestee)
+    pentester.check_value(ctx, requestee_balance, value, [requestee])
 
     requestee_value = random.randint(1,6)
     requested_value = random.randint(1,6)

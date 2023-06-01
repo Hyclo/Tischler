@@ -128,10 +128,10 @@ async def send_request(ctx, member, betting_amount):
     await ctx.respond(embed=embed)
 
 async def accept(ctx, member):
-    if await find_request(ctx, ctx.author.id, member.id) == False:
+    if await find_request(ctx, member.id, ctx.author.id) == False:
         return
     
-    request = await find_request(ctx, ctx.author.id, member.id)
+    request = await find_request(ctx, member.id, ctx.author.id)
 
     request["state"] = "done"
     
@@ -141,9 +141,9 @@ async def accept(ctx, member):
     return
 
 async def deny(ctx, member):
-    if await find_request(ctx, ctx.author.id, member.id) == False:
+    if await find_request(ctx, member.id, ctx.author.id) == False:
         return
-    request = await find_request(ctx, ctx.author.id, member.id)
+    request = await find_request(ctx, member.id, ctx.author.id)
 
     request["state"] = "done"
 

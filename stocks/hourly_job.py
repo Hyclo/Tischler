@@ -11,11 +11,14 @@ async def stocks_job(bot):
 
     weekly_base = float(file.readline())
 
+    file.close()
+
     embed = discord.Embed(
         title="Stock information",
         description= "The updated market prices of all stocks",
         color=discord.Colour.blurple()
     )
+
 
     with open("./stock/stock.json") as json_file:
         data = json.load(json_file)

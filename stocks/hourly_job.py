@@ -19,7 +19,7 @@ async def stocks_job(bot):
         color=discord.Colour.blurple()
     )
 
-    with open("./stock/stocks.json") as json_file:
+    with open("./stocks/stocks.json") as json_file:
         data = json.load(json_file)
 
         stocks = data["stocks"]

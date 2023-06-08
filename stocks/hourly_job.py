@@ -36,8 +36,8 @@ async def stocks_job(bot):
 
             embed.add_field(name= stock["name"], value="Market price: " + str(stock["price"]), inline=False)
 
+        await channel.send(embed=embed, cotent="test")
 
     with open("data.json", "w") as outfile:
         json.dump(data, outfile)
 
-    await channel.send(embed=embed, cotent="test")

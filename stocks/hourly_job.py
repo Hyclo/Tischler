@@ -9,7 +9,7 @@ async def stocks_job(bot):
 
     file = fileinput.input(files="./stocks/weekly.txt")
 
-    weekly_base = int(file.readline())
+    weekly_base = float(file.readline())
 
     embed = discord.Embed(
         title="Stock information",

@@ -48,7 +48,7 @@ async def backup():
     subprocess.call(['bash', './backup/backup.sh'])
 
 @tasks.loop(hours=1.0)
-async def stocks(bot):
+async def stocks():
     await stocks_job(bot)
 
 @tasks.loop(hours=24.0)

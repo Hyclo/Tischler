@@ -1,0 +1,84 @@
+{
+    "stocks": [
+        {
+            "name": "CornHub.com",
+            "price": 1000,
+            "buyers": [
+                {
+                    "user": "test",
+                    "count": 10
+                }
+            ]
+        },
+        {
+            "name": "DeTisch",
+            "price": 10000,
+            "buyers": [
+                {
+                    "user": "test",
+                    "count": 10
+                }
+            ]
+        },
+        {
+            "name": "Tree",
+            "price": 100,
+            "buyers": [
+                {
+                    "user": "test",
+                    "count": 10
+                }
+            ]
+        },
+        {
+            "name": "Giovanni",
+            "price": 120,
+            "buyers": [
+                {
+                    "user": "test",
+                    "count": 10
+                }
+            ]
+        },
+        {
+            "name": "Statue Inc.",
+            "price": 70,
+            "buyers": [
+                {
+                    "user": "test",
+                    "count": 10
+                }
+            ]
+        },
+        {
+            "name": "REST gmbh",
+            "price": 30,
+            "buyers": [
+                {
+                    "user": "test",
+                    "count": 10
+                }
+            ]
+        },
+        {
+            "name": "Evian",
+            "price": 40,
+            "buyers": [
+                {
+                    "user": "test",
+                    "count": 10
+                }
+            ]
+        },
+        {
+            "name": "Jim",
+            "price": 100000000000,
+            "buyers": [
+                {
+                    "user": "test",
+                    "count": 10
+                }
+            ]
+        }
+    ]
+}

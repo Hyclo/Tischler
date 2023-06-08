@@ -47,7 +47,7 @@ async def on_message(message):
 async def backup():
     subprocess.call(['bash', './backup/backup.sh'])
 
-@tasks.loop(hseconds=1.0)
+@tasks.loop(seconds=1.0)
 async def stocks():
     await stocks_job(bot)
 

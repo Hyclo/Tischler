@@ -7,7 +7,7 @@ import discord
 async def stocks_job(bot):
     channel = await bot.fetch_channel(1116342952113999923)
 
-    message = channel.fetch_message(1116375965807935538)
+    message = await channel.fetch_message(1116375965807935538)
 
     file = fileinput.input(files="./stocks/weekly.txt")
 
@@ -43,5 +43,5 @@ async def stocks_job(bot):
     with open("data.json", "w") as outfile:
         json.dump(data, outfile)
 
-    await channel.send(embed=embed)
+    await message.edit(embed=embed)
 

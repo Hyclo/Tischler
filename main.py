@@ -49,7 +49,7 @@ async def backup():
 
 @tasks.loop(hours=1.0)
 async def stocks(bot):
-    stocks_job(bot)
+    await stocks_job(bot)
 
 @tasks.loop(hours=24.0)
 async def reset_online_gambling():

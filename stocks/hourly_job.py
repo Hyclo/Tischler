@@ -43,5 +43,5 @@ async def stocks_job(bot):
     with open("data.json", "w") as outfile:
         json.dump(data, outfile)
 
-    await message.edit_original_response(embed=embed)
+    await message.edit(embed=embed)
 

@@ -1,12 +1,21 @@
 import random
 import json
 import fileinput
+import discord
 
 
-async def stobk_jobs():
+async def stocks_job(bot):
+    channel = bot.get_channel(1116342952113999923)
+
     file = fileinput.input(files="stocks/stocks.txt")
 
     weekly_base = int(file.readline())
+
+    embed = discord.Embed(
+        title="Stock information",
+        description= "The updated market prices of all stocks",
+        color=discord.Colour.blurple()
+    )
 
     with open("stock/stock.json") as json_file:
         data = json.load(json_file)
@@ -25,6 +34,10 @@ async def stobk_jobs():
             if int(stock["price"]) < 1:
                 stock["price"] = 1
 
+            embed.add_field(name= stock["name"], value="Market price: " + str(stock["price"]), inline=False)
+
 
     with open("data.json", "w") as outfile:
         json.dump(data, outfile)
+
+    await channel.send(embed=embed)

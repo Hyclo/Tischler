@@ -25,6 +25,7 @@ from gamling.online_dice import clear_requests
 from migration_db.migrate import migrate
 from work.work import start_working
 from work.work import end_working
+from stocks.hourly_job import stocks_job
 # file imports end
 
 load_dotenv() # load all the variables from the env file
@@ -45,6 +46,10 @@ async def on_message(message):
 @tasks.loop(hours=1.0)
 async def backup():
     subprocess.call(['bash', './backup/backup.sh'])
+
+@tasks.loop(hours=1.0)
+async def stocks(bot):
+    stocks_job(bot)
 
 @tasks.loop(hours=24.0)
 async def reset_online_gambling():

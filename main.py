@@ -134,6 +134,7 @@ async def slash_deny(ctx, member: Option(discord.Member, " your friends name", r
 async def slash_clear_requests(ctx):
     await clear_requests(ctx)
 
+stocks.start()
 reset_online_gambling.start()
 backup.start()
 bot.run(os.getenv('TOKEN'))

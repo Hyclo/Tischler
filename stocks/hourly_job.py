@@ -19,7 +19,7 @@ async def stocks_job(bot):
 
     print("test")
 
-    with open("stock/stock.json") as json_file:
+    with open("./stock/stock.json") as json_file:
         data = json.load(json_file)
 
         stocks = data["stocks"]

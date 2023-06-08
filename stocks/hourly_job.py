@@ -7,7 +7,7 @@ import discord
 async def stocks_job(bot):
     channel = bot.get_channel(1116342952113999923)
 
-    file = fileinput.input(files="stocks/stocks.txt")
+    file = fileinput.input(files="./stocks/stocks.txt")
 
     weekly_base = int(file.readline())
 

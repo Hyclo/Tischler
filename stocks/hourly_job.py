@@ -41,5 +41,5 @@ async def stocks_job(bot):
     with open("data.json", "w") as outfile:
         json.dump(data, outfile)
 
-    await channel.send(embed)
+    await channel.send(embed=embed)
 

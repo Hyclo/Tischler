@@ -49,7 +49,6 @@ async def backup():
 
 @tasks.loop(seconds=10.0)
 async def stocks():
-    print("test")
     await stocks_job(bot)
 
 @tasks.loop(hours=24.0)

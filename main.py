@@ -47,7 +47,7 @@ async def on_message(message):
 async def backup():
     subprocess.call(['bash', './backup/backup.sh'])
 
-@tasks.loop(seconds=10.0)
+@tasks.loop(minutes=15.0)
 async def stocks():
     await stocks_job(bot)
 
@@ -69,11 +69,6 @@ async def reset_online_gambling():
 
 @bot.slash_command(name = "latency", description = "check the latency of Schreiner")
 async def check_latency(ctx):
-    await ctx.respond("I'll respond in "+str(bot.latency)+"s")
-
-@bot.slash_command(name = "check_stocks", description = "check the latency of Schreiner")
-async def check_stocks(ctx):
-    await stocks_job(bot)
     await ctx.respond("I'll respond in "+str(bot.latency)+"s")
 
 @bot.slash_command(name = "login", description = "login as tischler")

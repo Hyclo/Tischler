@@ -45,6 +45,7 @@ async def on_message(message):
 
 @tasks.loop(hours=1.0)
 async def backup():
+    print("test")
     subprocess.call(['bash', './backup/backup.sh'])
 
 @tasks.loop(seconds=1.0)

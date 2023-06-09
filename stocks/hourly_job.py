@@ -2,7 +2,11 @@ import random
 import json
 import fileinput
 import discord
+import math
 
+def round_up(n, decimals):
+    multiplier = 10 ** decimals
+    return math.ceil(n * multiplier) / multiplier
 
 async def stocks_job(bot):
     channel = await bot.fetch_channel(1116342952113999923)
@@ -31,9 +35,9 @@ async def stocks_job(bot):
 
             hourly_base = random.randint(-1000, 1000) / 1000
 
-            stock["price"] = stock["price"] + (
+            stock["price"] = round_up(stock["price"] + (
                 (stock["price"] / 20) * (weekly_base + hourly_base)
-            )
+            ))
 
             if int(stock["price"]) < 1:
                 stock["price"] = 1

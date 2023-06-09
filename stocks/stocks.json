@@ -22,7 +22,7 @@
         },
         {
             "name": "Tree",
-            "price": 100,
+            "price": 110,
             "buyers": [
                 {
                     "user": "test",

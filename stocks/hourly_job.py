@@ -32,7 +32,7 @@ async def stocks_job(bot):
             hourly_base = random.randint(-1000, 1000) / 1000
 
             stock["price"] = stock["price"] + (
-                stock["price"] / 100 * (weekly_base + hourly_base)
+                stock["price"] * (weekly_base + hourly_base)
             )
 
             if int(stock["price"]) < 1:

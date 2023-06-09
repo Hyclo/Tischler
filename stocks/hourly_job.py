@@ -37,7 +37,7 @@ async def stocks_job(bot):
 
             stock["price"] = round_up(stock["price"] + (
                 (stock["price"] / 20) * (weekly_base + hourly_base)
-            ))
+            ), 0)
 
             if int(stock["price"]) < 1:
                 stock["price"] = 1

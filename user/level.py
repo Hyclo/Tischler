@@ -1,5 +1,5 @@
 import pentester
-import distributioner
+import distrib
 import datetime
 import random
 import discord
@@ -32,25 +32,24 @@ async def level(author_id, message, bot):
     if await pentester.is_user_in_db(author_id) == False:
         return
     
-    if get_difference_in_hours(distributioner.get(author_id, "timestamplevel")) < 1:
+    if get_difference_in_hours(distrib.get_user(author_id).timestamplevel) < 1:
         return
     else:
-        distributioner.update(author_id, "timestamplevel" ,datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M"))
+        distrib.update(author_id, "timestamplevel" ,datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d %H:%M"))
         
-        distributioner.add(author_id, "exp", random.randint(15,25))
+        distrib.add_up_value(author_id, "exp", random.randint(15,25))
         
-        level = int(distributioner.get(author_id, "level"))
-        exp = distributioner.get(author_id, "exp")
+        user = distrib.get_user(author_id)
         
         result = 0
-        stolen_levels = level
+        stolen_levels = user.level
         while stolen_levels >= 0:
             result += 5 * ((level-stolen_levels) ** 2) + ((level-stolen_levels) * 50) + 100
             stolen_levels = stolen_levels - 1
         
-        if exp >= result:
+        if user.exp >= result:
             
-            distributioner.add(author_id, "level", 1)
+            distrib.add_up_value(author_id, "level", 1)
             
             embed = discord.Embed(
                 title="Level up",
@@ -73,14 +72,13 @@ async def rank(ctx, member, bot):
     if await pentester.check_user(ctx, ctx_author) == False:
         return
 
-    level = int(distributioner.get(ctx_author.id, "level"))
-    exp = distributioner.get(ctx_author.id, "exp")
+    user = distrib.get_user(ctx_author.id)
 
-    stolen_levels = level
+    stolen_levels = user.level
 
     required_exp = 0
     while stolen_levels >= 0:
-        required_exp += 5 * ((level-stolen_levels) ** 2) + ((level-stolen_levels) * 50) + 100
+        required_exp += 5 * ((user.level-stolen_levels) ** 2) + ((user.level-stolen_levels) * 50) + 100
         stolen_levels = stolen_levels - 1
 
     current_level_required_exp = 0
@@ -88,10 +86,10 @@ async def rank(ctx, member, bot):
         current_level_required_exp += 5 * ((level-stolen_levels) ** 2) + ((level-stolen_levels) * 50) + 100
         stolen_levels = stolen_levels - 1
     
-    percent_to_next_lvl = ((exp - current_level_required_exp) / (required_exp - current_level_required_exp)) * 100
+    percent_to_next_lvl = ((user.exp - current_level_required_exp) / (required_exp - current_level_required_exp)) * 100
     
     # Run the conversion function
-    await fotographer.convert_html_to_png(level, exp, percent_to_next_lvl)
+    await fotographer.convert_html_to_png(user.level, user.exp, percent_to_next_lvl)
     
     file = discord.File("././output.png")
     

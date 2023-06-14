@@ -47,7 +47,7 @@ VALUES
   ('Statue Inc.', 70),
   ('REST gmbh', 30),
   ('Evian', 40),
-  ('Jim', 100000000000);
+  ('Jim', 100000000);
 
 DESC users;
 DESC requests;

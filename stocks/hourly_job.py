@@ -44,7 +44,7 @@ async def stocks_job(bot):
 
             embed.add_field(name= stock["name"], value="Market price: " + str(stock["price"]), inline=False)
 
-    with open("data.json", "w") as outfile:
+    with open("./stocks/stocks.json", "w") as outfile:
         json.dump(data, outfile)
 
     await message.edit(embed=embed)

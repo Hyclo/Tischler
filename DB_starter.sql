@@ -6,7 +6,7 @@ USE tischler;
 
 -- Create the users table
 CREATE TABLE users (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-  user_id INT UNSINGED NOT NULL, 
+  user_id INT UNSINGED, 
   money INT,
   level INT,
   exp INT,

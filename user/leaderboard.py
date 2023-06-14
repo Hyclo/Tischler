@@ -1,5 +1,5 @@
 import discord
-import distributioner
+import distrib
 
 
 async def leaderboard(ctx, bot):
@@ -9,7 +9,9 @@ async def leaderboard(ctx, bot):
             color=discord.Colour.dark_gold()
     )
     
-    users = await distributioner.get_multiple("level", True)
+    users = await distrib.get_all_users()
+
+    users.sort(key=lambda x: x[1], reverse=True)
     
     embed.add_field(name="Top 1", value=str(await discord.Bot.get_or_fetch_user(bot, users[0][0])) + " with " + str(users[0][1]))
     embed.add_field(name="Top 2", value=str(await discord.Bot.get_or_fetch_user(bot, users[1][0])) + " with " + str(users[1][1]))

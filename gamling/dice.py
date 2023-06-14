@@ -7,7 +7,7 @@ async def dice(ctx, value, bot):
     if await pentester.check_user(ctx, ctx.author) == False:
         return
     
-    user = distrib.get(ctx.author.id)
+    user = distrib.get_user(ctx.author.id)
     
     if await pentester.check_value(ctx, user.money , value, None) == False:
         return

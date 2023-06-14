@@ -1,16 +1,22 @@
-'''
-def update(user_id, key, value):
+import mariadb
 
-def add(user_id, key, value):
+class Connector:
+    def __init__(self):
+        try:
+            conn = mariadb.connect(
+                user="root",
+                password="",
+                host="192.0.2.1",
+                port=3306,
+                database="tischler"
 
-def get_user(user_id):
+            )
+        except mariadb.Error as e:
+            print(f"Error connecting to MariaDB Platform: {e}")
 
-def get(user_id, key):
+        self.cur = conn.cursor()
 
-async def subtract(user_id, key, value):
-
-async def get_multiple(key, reversed):
-'''
+con = Connector()
 
 def get_user(user_id):
     return
@@ -33,10 +39,10 @@ def get_all_stocks():
 def add_stock(stock_name, stock_value):
     return
 
-def add(user_id, key, value):
+def add_up_value(user_id, key, value):
     return
 
-def subtract(user_id, key, value):
+def subtract_value(user_id, key, value):
     return
 
 def update(user_id, key, value):
@@ -65,4 +71,3 @@ def add_buyer_stock(buyer_id, stock_name):
 
 def subtract_buyer_stock(buyer_id, stock_name):
     return
-

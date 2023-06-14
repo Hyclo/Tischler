@@ -6,35 +6,38 @@ USE tischler;
 
 -- Create the users table
 CREATE TABLE users (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-  user_id INT UNSIGNED, 
-  money INT,
-  level INT,
-  exp INT,
-  timestampdaily DATE,
-  timestampwork DATETIME,
-  timestamplevel DATETIME,
-  working BOOLEAN);
+    user_id INT(50) UNSIGNED NOT NULL UNIQUE, 
+    user_money INT,
+    user_level INT,
+    user_exp INT,
+    timestampdaily DATE,
+    timestampwork DATETIME,
+    timestamplevel DATETIME,
+    working BOOLEAN
+);
 
 -- Create the requests table
 CREATE TABLE requests (id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-requestee INT(50) NOT NULL, 
-requested INT(50) NOT NULL,
-betting_amount INT NOT NULL);
+    requestee INT(50) UNSIGNED NOT NULL UNIQUE, 
+    requested INT(50) UNSIGNED NOT NULL UNIQUE,
+    betting_amount INT NOT NULL,
+    request_state TInyint(1) NOT NULL
+);
 
 -- Create the stocks table
 CREATE TABLE stocks (
-  stock_id INT PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(255),
-  price INT UNSIGNED
+    stock_id INT PRIMARY KEY AUTO_INCREMENT,
+    stock_name VARCHAR(255),
+    price INT UNSIGNED
 );
 
 -- Create the buyers table
 CREATE TABLE buyers (
-  buyer_id INT PRIMARY KEY AUTO_INCREMENT,
-  stock_id INT,
-  user VARCHAR(255),
-  count INT,
-  FOREIGN KEY (stock_id) REFERENCES stocks(stock_id)
+    buyer_id INT PRIMARY KEY AUTO_INCREMENT,
+    stock_id INT,
+    user_id INT(50) UNSIGNED NOT NULL UNIQUE,
+    count INT,
+    FOREIGN KEY (stock_id) REFERENCES stocks(stock_id)
 );
 
 -- Insert the values

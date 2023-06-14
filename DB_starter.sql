@@ -25,7 +25,7 @@ betting_amount INT NOT NULL);
 CREATE TABLE stocks (
   stock_id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255),
-  price DECIMAL(10,2)
+  price INT UNSIGNED
 );
 
 -- Create the buyers table

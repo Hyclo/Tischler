@@ -73,6 +73,12 @@ def get_all_stocks():
 def add_stock(stock_name, stock_value):
     con.cur.execute("INSERT INTO stocks VALUES (?, ?)", (stock_name, stock_value))
 
+def set_stock_value(stock_name, value):
+    con.cur.execute("UPDATE stocks SET stock_value=? WHERE stock_name=?", (value, stock_name))
+
+def add_up_stock_value(stock_name, value):
+    con.cur.execute("UPDATE stocks SET stock_value = stock_value + ? WHERE stock_name=?", (value, stock_name))
+
 def add_up_value(user_id, key, value):
     con.cur.execute("UPDATE users SET ? = ? + ? WHERE user_id=?", (key, key, value, user_id))
 
@@ -82,9 +88,6 @@ def subtract_value(user_id, key, value):
 def update_user(user_id, key, value):
     con.cur.execute("UPDATE users SET ? = ? WHERE user_id=?", (key, value, user_id))
 
-def update_stock(stock_name, value):
-    con.cur.execute("UPDATE stocks SET stock_value=? WHERE stock_name=?", (value, stock_name))
-
 def get_request(requestee_id, requested_id):
     wanted_state = "pending"
     con.cur.execute("SELECT * FROM requests WHERE requestee=? AND requested=? AND state=?", (requestee_id, requested_id, wanted_state))
@@ -93,6 +96,8 @@ def get_request(requestee_id, requested_id):
         return DB_Objects.DB_Request(requestee, requested, betting_amount, state)
     
     return None
+
+# TODO write method to update request state
 
 def delete_request(requestee_id, requested_id):
     wanted_state = "done"

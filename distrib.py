@@ -79,8 +79,11 @@ def add_up_value(user_id, key, value):
 def subtract_value(user_id, key, value):
     con.cur.execute("UPDATE users SET ? = ? - ? WHERE user_id=?", (key, key, value, user_id))
 
-def update(user_id, key, value):
+def update_user(user_id, key, value):
     con.cur.execute("UPDATE users SET ? = ? WHERE user_id=?", (key, value, user_id))
+
+def update_stock(stock_name, value):
+    con.cur.execute("UPDATE stocks SET stock_value=? WHERE stock_name=?", (value, stock_name))
 
 def get_request(requestee_id, requested_id):
     wanted_state = "pending"

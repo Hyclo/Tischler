@@ -1,4 +1,5 @@
 import mariadb
+import DB_Objects
 
 class Connector:
     def __init__(self):
@@ -19,7 +20,10 @@ class Connector:
 con = Connector()
 
 def get_user(user_id):
-    return
+    con.cur.execute("SELECT * FROM users WHERE user_id=?", (user_id))
+
+    for (user_id, money, level, exp, timestampdaily, timestampwork, timestamplevel, working) in con.cur:
+        return DB_Objects.DB_User(user_id, money, level, exp, timestampdaily, timestampwork, timestamplevel, working)
 
 def get_all_users():
     return

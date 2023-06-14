@@ -1,5 +1,5 @@
 import discord
-import distributioner
+import distrib
 import pentester
 
 async def profile(ctx, bot, member):
@@ -12,7 +12,7 @@ async def profile(ctx, bot, member):
     if await pentester.check_user(ctx, ctx_author) == False:
         return
 
-    user = distributioner.get_user(ctx_author.id)
+    user = distrib.get_user(ctx_author.id)
     
     embed = discord.Embed(
         title="Profile",

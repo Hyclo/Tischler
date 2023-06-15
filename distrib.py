@@ -100,8 +100,8 @@ def get_request(requestee_id, requested_id):
 # TODO write method to update request state
 
 def delete_request(requestee_id, requested_id):
-    wanted_state = "done"
-    con.cur.execute("UPDATE requests SET state=? WHERE requestee=? AND requested=?", (wanted_state, requestee_id, requested_id))
+    wanted_state = "pending"
+    con.cur.execute("DELETE FROM requests WHERE requestee=? AND requested=? AND state=?", (requestee_id, requested_id, wanted_state))
 
 def add_request(requestee_id, requested_id, betting_amount):
     state = "pending"
